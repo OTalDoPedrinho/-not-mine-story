@@ -1,3 +1,3 @@
 extends Node
 
-@export var grvt = 11
+@export var grvt = 10

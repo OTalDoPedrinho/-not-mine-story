@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://dxbthm5ini32n"]
 
 [ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="1_8or6t"]
+[ext_resource type="Script" uid="uid://71o2cshl1sle" path="res://scripts/player.gd" id="1_unwft"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unwft"]
 
 [node name="Player" type="CharacterBody2D" unique_id=1428523968]
+script = ExtResource("1_unwft")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=43848691]
 position = Vector2(9.536743e-07, 9.536743e-07)

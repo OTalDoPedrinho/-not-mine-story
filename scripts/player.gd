@@ -69,18 +69,18 @@ func _physics_process(delta: float) -> void:
 				$AtkHitbox.monitoring = false
 				cur_state = state.idle
 	
-	# Colisão com inimigos (dano lateral)
+	#region Colisão
 	for i in get_slide_collision_count():
 		var collider = get_slide_collision(i).get_collider()
-		
 		if collider is Enemy:
 			if global_position.y < collider.global_position.y - 18:
 				collider._pisado()
 				velocity.y = -j_force * 0.6
 			else:
 				hp -= collider.dmg
+	#endregion
+	velocity.y += Global.grvt
 	
-	velocity.y += 10
 	move_and_slide()
 
 func _on_atk_hitbox_body_entered(body: Node2D) -> void:
