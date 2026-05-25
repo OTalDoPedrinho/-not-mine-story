@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var speed = 100
 @export var j_force = 250
 @export var dash_spd = 1500
-@export var dash_dur = 0.2
+@export var dash_dur = 0.1
 @export var atk_dur = 0.15
 
 var has_picaxe = false
@@ -69,9 +69,6 @@ func _physics_process(delta: float) -> void:
 				$AtkHitbox.monitoring = false
 				cur_state = state.idle
 	
-	velocity.y += 10
-	move_and_slide()
-	
 	# Colisão com inimigos (dano lateral)
 	for i in get_slide_collision_count():
 		var collider = get_slide_collision(i).get_collider()
@@ -82,6 +79,9 @@ func _physics_process(delta: float) -> void:
 				velocity.y = -j_force * 0.6
 			else:
 				hp -= collider.dmg
+	
+	velocity.y += 10
+	move_and_slide()
 
 func _on_atk_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
