@@ -34,6 +34,3 @@ func tomar_dano():
 	hp -= 1
 	if hp <= 0:
 		queue_free()
-
-func _pisado():
-	queue_free()

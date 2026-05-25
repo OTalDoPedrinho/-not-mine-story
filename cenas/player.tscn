@@ -5,6 +5,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unwft"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kthid"]
+size = Vector2(9, 20)
+
 [node name="Player" type="CharacterBody2D" unique_id=1428523968]
 script = ExtResource("1_unwft")
 
@@ -26,3 +29,12 @@ drag_left_margin = 0.1
 drag_right_margin = 0.1
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="AtkHitbox" type="Area2D" parent="." unique_id=490564412]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkHitbox" unique_id=173258603]
+position = Vector2(14.5, 0)
+shape = SubResource("RectangleShape2D_kthid")
+disabled = true
+
+[connection signal="body_entered" from="AtkHitbox" to="." method="_on_atk_hitbox_body_entered"]
