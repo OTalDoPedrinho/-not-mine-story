@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 #region Variáveis
+#region @
 @export var hp = 3
 @export var speed = 100
 @export var j_force = 250
@@ -8,8 +9,16 @@ extends CharacterBody2D
 @export var dash_dur = 0.1
 @export var atk_dur = 0.15
 @export var iframes_time = .75
+@export var projetil_cena: PackedScene = preload("res://cenas/projetil.tscn")
+#endregion
 
+#region Booleans
 var iframed = false
+#endregion
+
+#region Variables
+var shoot_timer = 0.0
+var shoot_dur = 0.2
 var iframes_timer = 0
 var dash_cooldown = .4
 var dash_timer = dash_cooldown
@@ -17,8 +26,12 @@ var dash_cur_dur = 0.0
 var atk_timer = 0.0
 #endregion
 
+#region States
 enum state {idle, walk, jump, dash, atk, shoot, squat, take_dmg, die, talk}
 var cur_state:state = state.idle
+#endregion
+
+#endregion
 
 func _physics_process(delta: float) -> void:
 	var move_x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
@@ -37,8 +50,12 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("atk"):
 				cur_state = state.atk
 				atk_timer = 0.0
+			if Input.is_action_just_pressed("shoot"):
+				cur_state = state.shoot
+				shoot_timer = 0.0
 		state.walk:
 			velocity.x = move_x * speed
+			
 			if velocity.x == 0:
 				cur_state = state.idle
 			if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -49,9 +66,16 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("atk"):
 				cur_state = state.atk
 				atk_timer = 0.0
+			if Input.is_action_just_pressed("shoot"):
+				cur_state = state.shoot
+				shoot_timer = 0
 		state.jump:
 			velocity.y = -j_force
 			cur_state = state.idle
+			
+			if Input.is_action_just_pressed("shoot"):
+				cur_state = state.shoot
+				shoot_timer = 0
 		state.dash:
 			dash_cur_dur += delta
 			velocity.x = move_x * dash_spd if move_x != 0 else 1
@@ -68,7 +92,17 @@ func _physics_process(delta: float) -> void:
 				$AtkHitbox.monitoring = false
 				cur_state = state.idle
 		state.shoot:
-			pass
+			shoot_timer += delta
+			
+			if shoot_timer <= delta:
+				var mouse_pos = get_global_mouse_position()
+				var shoot_dir = (mouse_pos - global_position).normalized()
+				var projetil = projetil_cena.instantiate()
+				projetil.global_position = global_position + shoot_dir * 20
+				projetil.velocity = shoot_dir * 500
+				get_parent().add_child(projetil)
+			if shoot_timer >= shoot_dur:
+				cur_state = state.idle
 		state.take_dmg:
 			iframes_timer+=delta
 			velocity.x = -75 #knockback
@@ -85,6 +119,8 @@ func _physics_process(delta: float) -> void:
 		if collider is Enemy and not iframed:
 			hp -= collider.dmg
 			cur_state = state.take_dmg
+		if collider == preload("res://cenas/projetil.tscn"):
+			continue
 	#endregion
 	velocity.y += Global.grvt
 	
