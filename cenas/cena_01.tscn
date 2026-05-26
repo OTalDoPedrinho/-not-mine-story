@@ -14,7 +14,7 @@ size = Vector2(20, 654)
 
 [node name="cena01" type="Node2D" unique_id=602933283]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=457914997]
+[node name="BG" type="Sprite2D" parent="." unique_id=457914997]
 position = Vector2(480.00003, 270)
 scale = Vector2(7.5000005, 4.21875)
 texture = ExtResource("1_tayw6")
