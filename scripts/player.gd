@@ -105,7 +105,7 @@ func _physics_process(delta: float) -> void:
 				cur_state = state.idle
 		state.take_dmg:
 			iframes_timer+=delta
-			velocity.x = -75 #knockback
+			velocity.x = -move_x*75 #knockback
 			velocity.y = -100
 			
 			if iframes_timer>=iframes_time:
