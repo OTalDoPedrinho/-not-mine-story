@@ -1,9 +1,9 @@
 class_name Enemy
 extends CharacterBody2D
 
-@export var hp: int = 3
-@export var speed: int = 100
-@export var dmg: int = 1
+@export var hp: int
+@export var speed: int
+@export var dmg: int
 
 var direc = [1, -1]
 var dir = direc.pick_random()
