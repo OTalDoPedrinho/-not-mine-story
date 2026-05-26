@@ -24,6 +24,11 @@ Global="*uid://b158gsr7l3xd5"
 window/size/viewport_width=960
 window/size/viewport_height=540
 
+[global_group]
+
+enemy="grupo de todos os inmigos"
+player=""
+
 [input]
 
 left={
