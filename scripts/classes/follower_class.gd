@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 		var dist = global_position.distance_to(player.global_position)
 		
 		if dist<=dectect_range:
-			var direc = sign(player.global_position - global_position)
+			var direc = sign(player.global_position.x - global_position.x)
 			velocity.x = direc * speed
 		else:
 			velocity.x = speed * dir
