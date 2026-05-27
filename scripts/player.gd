@@ -17,6 +17,8 @@ var iframed = false
 #endregion
 
 #region Variables
+var knockback_dir
+
 var shoot_timer = 0.0
 var shoot_dur = 0.2
 var iframes_timer = 0
@@ -86,7 +88,7 @@ func _physics_process(delta: float) -> void:
 		state.atk:
 			atk_timer += delta
 			velocity.x = 0
-			$AtkHitbox.disable_mode = true
+			$AtkHitbox.monitoring = true
 			
 			if atk_timer >= atk_dur:
 				$AtkHitbox.monitoring = false
@@ -103,15 +105,24 @@ func _physics_process(delta: float) -> void:
 				get_parent().add_child(projetil)
 			if shoot_timer >= shoot_dur:
 				cur_state = state.idle
+		state.squat:
+			pass
 		state.take_dmg:
 			iframes_timer+=delta
-			velocity.x = -move_x*75 #knockback
-			velocity.y = -100
+			velocity.x = knockback_dir*25 #knockback
+			velocity.y = -15 #knockback
 			
 			if iframes_timer>=iframes_time:
 				iframes_timer = 0
 				iframed = false
+				velocity.x = move_x*speed
 				cur_state = state.idle
+		state.die:
+			velocity.x = 0
+			queue_free()
+		state.talk:
+			velocity.x = 0
+			_dialogue()
 	
 	#region Colisão
 	for i in get_slide_collision_count():
@@ -119,6 +130,7 @@ func _physics_process(delta: float) -> void:
 		if collider is Enemy and not iframed:
 			hp -= collider.dmg
 			cur_state = state.take_dmg
+			knockback_dir = sign(global_position.x - collider.global_position.x)
 		if collider == preload("res://cenas/projetil.tscn"):
 			continue
 	#endregion
@@ -129,3 +141,6 @@ func _physics_process(delta: float) -> void:
 func _on_atk_hitbox_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		body.tomar_dano()
+
+func _dialogue():
+	pass

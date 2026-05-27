@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="1_tayw6"]
 [ext_resource type="PackedScene" uid="uid://dxbthm5ini32n" path="res://cenas/player.tscn" id="2_is7n3"]
+[ext_resource type="Script" uid="uid://ca0wce5y328i3" path="res://scripts/classes/enemy_class.gd" id="3_ur80h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_is7n3"]
 size = Vector2(1163, 115)
@@ -11,6 +12,8 @@ size = Vector2(20, 658)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ce8lm"]
 size = Vector2(20, 654)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jp4th"]
 
 [node name="cena01" type="Node2D" unique_id=602933283]
 
@@ -39,3 +42,16 @@ shape = SubResource("RectangleShape2D_ce8lm")
 
 [node name="Player" parent="." unique_id=1428523968 instance=ExtResource("2_is7n3")]
 position = Vector2(380, 285)
+
+[node name="Walker" type="CharacterBody2D" parent="." unique_id=1161203279]
+script = ExtResource("3_ur80h")
+metadata/_custom_type_script = "uid://ca0wce5y328i3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walker" unique_id=1160214914]
+position = Vector2(269.64, 229.64)
+shape = SubResource("RectangleShape2D_jp4th")
+
+[node name="Sprite2D" type="Sprite2D" parent="Walker" unique_id=1263319916]
+position = Vector2(269.64, 229.64)
+scale = Vector2(0.135, 0.135)
+texture = ExtResource("1_tayw6")
