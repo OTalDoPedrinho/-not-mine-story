@@ -3,12 +3,12 @@ extends CharacterBody2D
 #region Variáveis
 #region @
 @export var hp = 3
-@onready var speed = 100
+@export var speed = 100
 @export var j_force = 250
 @export var dash_spd = 300
 @export var dash_dur = 0.1
 @export var iframes_time = .75
-@onready var projetil_cena: PackedScene = preload("res://cenas/projetil.tscn")
+@export var projetil_cena: PackedScene = preload("res://cenas/projetil.tscn")
 #endregion
 
 #region Booleans
@@ -37,6 +37,8 @@ var cur_state:state = state.idle
 #endregion
 
 func _physics_process(delta: float) -> void:
+	print(str(hp))
+	
 	var move_x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	dash_timer += delta
 	
@@ -99,6 +101,7 @@ func _physics_process(delta: float) -> void:
 		state.squat:
 			squat = true
 		state.take_dmg:
+			pass
 			iframes_timer+=delta
 			velocity.x = knockback_dir*25 #knockback
 			velocity.y = -15 #knockback
@@ -118,10 +121,15 @@ func _physics_process(delta: float) -> void:
 	#region Colisão
 	for i in get_slide_collision_count():
 		var collider = get_slide_collision(i).get_collider()
-		if collider is Enemy and not iframed:
+		
+		if not is_instance_valid(collider):
+			continue
+		
+		if collider is Enemy and not iframed and collider.p_collidiu:
 			hp -= collider.dmg
 			cur_state = state.take_dmg
 			knockback_dir = sign(global_position.x - collider.global_position.x)
+			collider.p_collidiu = false
 		if collider.is_in_group('projetil'):
 			continue
 	#endregion

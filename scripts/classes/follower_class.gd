@@ -15,5 +15,5 @@ func _physics_process(delta: float) -> void:
 			if dist<=detect_range:
 				var direc = sign(player.global_position.x - global_position.x)
 				velocity.x = direc * speed
-			else:
-				velocity.x = speed * dir
+	
+	move_and_slide()

@@ -10,6 +10,7 @@ func _ready():
 	queue_free()
 
 func _physics_process(delta):
+	velocity.y += Global.grvt
 	move_and_slide()
 	
 	if get_slide_collision_count() > 0:

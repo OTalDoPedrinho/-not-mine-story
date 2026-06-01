@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="1_tayw6"]
 [ext_resource type="PackedScene" uid="uid://dxbthm5ini32n" path="res://cenas/player.tscn" id="2_is7n3"]
-[ext_resource type="Script" uid="uid://d0xb5xoosxujb" path="res://scripts/classes/follower_class.gd" id="3_ur80h"]
+[ext_resource type="Script" uid="uid://sjxkowbxtgim" path="res://scripts/classes/ground_shooter_class.gd" id="3_ur80h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_is7n3"]
 size = Vector2(1163, 115)
@@ -42,18 +42,13 @@ shape = SubResource("RectangleShape2D_ce8lm")
 
 [node name="Player" parent="." unique_id=1428523968 instance=ExtResource("2_is7n3")]
 position = Vector2(380, 285)
-hp = null
-speed = null
-j_force = null
-dash_spd = null
-dash_dur = null
-atk_dur = null
-iframes_time = null
-projetil_cena = null
 
-[node name="enemy01" type="CharacterBody2D" parent="." unique_id=933502892 groups=["enemy"]]
+[node name="enemy01" type="CharacterBody2D" parent="." unique_id=1214166055 groups=["enemy"]]
 script = ExtResource("3_ur80h")
-metadata/_custom_type_script = "uid://d0xb5xoosxujb"
+hp = 5
+speed = 50
+dmg = 1
+metadata/_custom_type_script = "uid://sjxkowbxtgim"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="enemy01" unique_id=1160214914]
 position = Vector2(269.64, 229.64)

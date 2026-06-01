@@ -7,11 +7,9 @@ extends CharacterBody2D
 
 var direc = [1, -1]
 var dir = direc.pick_random()
+var p_collidiu = false
 
 func _physics_process(delta: float) -> void:
-	# Reseta colisão a cada frame
-	var p_collidiu = false
-	
 	# Aplica gravidade
 	velocity.y += Global.grvt
 	
