@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="1_tayw6"]
 [ext_resource type="PackedScene" uid="uid://dxbthm5ini32n" path="res://cenas/player.tscn" id="2_is7n3"]
 [ext_resource type="Script" uid="uid://sjxkowbxtgim" path="res://scripts/classes/ground_shooter_class.gd" id="3_ur80h"]
+[ext_resource type="PackedScene" uid="uid://qs1q776sjpj3" path="res://cenas/projetil.tscn" id="4_ce8lm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_is7n3"]
 size = Vector2(1163, 115)
@@ -45,8 +46,10 @@ position = Vector2(380, 285)
 
 [node name="enemy01" type="CharacterBody2D" parent="." unique_id=1214166055 groups=["enemy"]]
 script = ExtResource("3_ur80h")
+shoot_range = 100
+shoot_cooldown = 1.0
+projetil_cena = ExtResource("4_ce8lm")
 hp = 5
-speed = 50
 dmg = 1
 metadata/_custom_type_script = "uid://sjxkowbxtgim"
 
