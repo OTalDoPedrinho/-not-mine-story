@@ -1,15 +1,15 @@
 extends CharacterBody2D
 
-var velocity_vector = Vector2.ZERO
+var velocity_vector = Vector2.RIGHT
 var dmg = 1
 var shooter
+var speed = 500
 
 func _ready():
 	await get_tree().create_timer(2.0).timeout
 	queue_free()
 
 func _physics_process(delta):
-	velocity = velocity_vector
 	move_and_slide()
 	
 	if get_slide_collision_count() > 0:

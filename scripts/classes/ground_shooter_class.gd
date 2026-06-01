@@ -12,7 +12,7 @@ func _physics_process(delta: float) -> void:
 
 	var player = get_tree().get_first_node_in_group("player")
 	if player:
-		var dist = global_position.ditance_to(player.global_position)
+		var dist = global_position.x.ditance_to(player.global_position.x)
 
 		if dist<=shoot_range and can_shoot:
 			velocity.x = 0

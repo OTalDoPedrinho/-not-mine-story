@@ -3,17 +3,17 @@ extends CharacterBody2D
 #region Variáveis
 #region @
 @export var hp = 3
-@export var speed = 100
+@onready var speed = 100
 @export var j_force = 250
 @export var dash_spd = 300
 @export var dash_dur = 0.1
-@export var atk_dur = 0.15
 @export var iframes_time = .75
-@export var projetil_cena: PackedScene = preload("res://cenas/projetil.tscn")
+@onready var projetil_cena: PackedScene = preload("res://cenas/projetil.tscn")
 #endregion
 
 #region Booleans
 var iframed = false
+var squat = false
 #endregion
 
 #region Variables
@@ -26,6 +26,7 @@ var dash_cooldown = .4
 var dash_timer = dash_cooldown
 var dash_cur_dur = 0.0
 var atk_timer = 0.0
+var atk_dur = 0.15
 #endregion
 
 #region States
@@ -80,7 +81,7 @@ func _physics_process(delta: float) -> void:
 				shoot_timer = 0
 		state.dash:
 			dash_cur_dur += delta
-			velocity.x = move_x * dash_spd if move_x != 0 else 1
+			velocity.x = move_x * dash_spd if move_x != 0 else sign(scale.x) * dash_spd
 			
 			if dash_cur_dur >= dash_dur:
 				dash_timer = 0
@@ -94,19 +95,9 @@ func _physics_process(delta: float) -> void:
 				$AtkHitbox.monitoring = false
 				cur_state = state.idle
 		state.shoot:
-			shoot_timer += delta
-			
-			if shoot_timer <= delta:
-				var mouse_pos = get_global_mouse_position()
-				var shoot_dir = (mouse_pos - global_position).normalized()
-				var projetil = projetil_cena.instantiate()
-				projetil.global_position = global_position + shoot_dir * 20
-				projetil.velocity = shoot_dir * 500
-				get_parent().add_child(projetil)
-			if shoot_timer >= shoot_dur:
-				cur_state = state.idle
+			_shoot(delta)
 		state.squat:
-			pass
+			squat = true
 		state.take_dmg:
 			iframes_timer+=delta
 			velocity.x = knockback_dir*25 #knockback
@@ -131,7 +122,7 @@ func _physics_process(delta: float) -> void:
 			hp -= collider.dmg
 			cur_state = state.take_dmg
 			knockback_dir = sign(global_position.x - collider.global_position.x)
-		if collider == preload("res://cenas/projetil.tscn"):
+		if collider.is_in_group('projetil'):
 			continue
 	#endregion
 	velocity.y += Global.grvt
@@ -144,3 +135,16 @@ func _on_atk_hitbox_body_entered(body: Node2D) -> void:
 
 func _dialogue():
 	pass
+
+func _shoot(delta: float):
+	if shoot_timer == 0.0:
+		var mouse_pos = get_global_mouse_position()
+		var shoot_dir = (mouse_pos - global_position).normalized()
+		var projetil = projetil_cena.instantiate()
+		projetil.global_position = global_position + shoot_dir * 20
+		projetil.velocity = shoot_dir * projetil.speed
+		get_parent().add_child(projetil)
+	
+	shoot_timer += delta
+	if shoot_timer >= shoot_dur:
+		cur_state = state.idle

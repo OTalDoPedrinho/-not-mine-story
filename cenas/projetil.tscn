@@ -5,7 +5,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j4buw"]
 
-[node name="Projetil" type="CharacterBody2D" unique_id=349732082]
+[node name="Projetil" type="CharacterBody2D" unique_id=349732082 groups=["projetil"]]
 script = ExtResource("1_j4buw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=723412417]
