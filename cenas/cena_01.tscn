@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="1_tayw6"]
 [ext_resource type="PackedScene" uid="uid://dxbthm5ini32n" path="res://cenas/player.tscn" id="2_is7n3"]
-[ext_resource type="Script" uid="uid://ca7ux5if7ndjj" path="res://scripts/classes/stone_enemy_class.gd" id="3_ur80h"]
+[ext_resource type="Script" uid="uid://ca7ux5if7ndjj" path="res://scripts/classes/enemy/stone_enemy_class.gd" id="3_ur80h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_is7n3"]
 size = Vector2(1163, 115)
