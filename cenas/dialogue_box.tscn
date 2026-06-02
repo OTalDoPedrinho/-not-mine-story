@@ -3,3 +3,29 @@
 [node name="DialogueBox" type="Control" unique_id=1033400360]
 layout_mode = 3
 anchors_preset = 0
+
+[node name="Panel" type="Panel" parent="." unique_id=2134433202]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="." unique_id=332047862]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label2" type="Label" parent="." unique_id=1077601470]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=633167091]
+layout_mode = 0
+offset_top = -5.0
+offset_right = 40.0
+offset_bottom = 35.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1183809644]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
