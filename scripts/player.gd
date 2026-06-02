@@ -12,7 +12,7 @@ extends CharacterBody2D
 #endregion
 
 #region Booleans
-var iframed = false
+var iframed = true
 var squat = false
 #endregion
 

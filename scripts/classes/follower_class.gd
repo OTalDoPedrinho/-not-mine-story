@@ -7,11 +7,10 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 	
 	var player = get_tree().get_first_node_in_group("player")
-	if player:
-		if not player.squat:
-			
-			var dist = global_position.distance_to(player.global_position)
-			
-			if dist<=detect_range:
-				var direc = sign(player.global_position.x - global_position.x)
-				velocity.x = direc * speed
+	if player and not player.squat:
+		
+		var dist = global_position.distance_to(player.global_position)
+		
+		if dist<=detect_range:
+			var follow_dir = sign(player.global_position.x - global_position.x)
+			velocity.x = follow_dir * speed
