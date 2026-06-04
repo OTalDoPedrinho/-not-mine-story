@@ -1,40 +1,49 @@
 [gd_scene format=3 uid="uid://ck7o8oj4850m5"]
 
-[node name="Dialogue" type="Control" unique_id=1033400360]
-visible = false
-layout_mode = 3
-anchors_preset = 0
+[ext_resource type="Script" uid="uid://dnjxxutyx4xvc" path="res://scripts/dialogue.gd" id="1_2a7po"]
+[ext_resource type="Texture2D" uid="uid://b7g8irw0tt3lt" path="res://sprites/TextBox.png" id="2_3e78c"]
 
-[node name="Box" type="Panel" parent="." unique_id=17669090]
-layout_mode = 0
-offset_left = -20.0
-offset_top = 7.0
-offset_right = 20.0
-offset_bottom = 47.0
+[node name="Dialogue" type="CanvasLayer" unique_id=2076664990]
+script = ExtResource("1_2a7po")
+
+[node name="Box" type="NinePatchRect" parent="." unique_id=481584300]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_3e78c")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
 
 [node name="Name" type="RichTextLabel" parent="Box" unique_id=1949350957]
 layout_mode = 0
 offset_left = 3.0
-offset_right = 71.0
-offset_bottom = 23.0
-scale = Vector2(0.5, 0.5)
+offset_right = 759.0
+offset_bottom = 24.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Name:"
 
 [node name="Text" type="RichTextLabel" parent="Box" unique_id=209702610]
 layout_mode = 0
-offset_left = 0.9999999
-offset_top = 6.999999
-offset_right = 85.99999
-offset_bottom = 30.0
-scale = Vector2(0.4, 0.4)
+offset_left = 3.0
+offset_top = 18.999989
+offset_right = 1275.0
+offset_bottom = 61.666615
+scale = Vector2(0.75, 0.75)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Text"
 
 [node name="Opções" type="HBoxContainer" parent="Box" unique_id=1885335080]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 26.0
-offset_right = 36.0
-offset_bottom = 37.0
+offset_top = -34.0
+offset_right = 60.0
+offset_bottom = -3.0
 
 [node name="Button" type="Button" parent="Box/Opções" unique_id=652126135]
 layout_mode = 2
+text = "asasas"

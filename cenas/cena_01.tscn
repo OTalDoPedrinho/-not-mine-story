@@ -41,5 +41,5 @@ shape = SubResource("RectangleShape2D_ce8lm")
 [node name="Player" parent="." unique_id=1428523968 instance=ExtResource("2_is7n3")]
 position = Vector2(380, 285)
 
-[node name="Guy#1" parent="." unique_id=1378502993 groups=["npc"] instance=ExtResource("4_jp4th")]
-position = Vector2(286, 494)
+[node name="Toadiana Bones" parent="." unique_id=1378502993 instance=ExtResource("4_jp4th")]
+position = Vector2(247, 494)
