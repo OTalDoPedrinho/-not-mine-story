@@ -9,13 +9,14 @@ var text_index: int = 0
 @onready var dialogue_ui = preload("res://cenas/dialogue.tscn").instantiate()
 #endregion
 
-func iniciar_dialogo(npc: NPC, json_path: String):
-	cur_npc = npc
-	_carregar_json(json_path)
-	in_dialogue = true
-	get_tree().root.add_child(dialogue_ui)
-	dialogue_ui.visible = true
-	_mostrar_cur_fala()
+func iniciar_dialogo(npc: NPC, json_path: String, encontro: int):
+	if not in_dialogue:
+		cur_npc = npc
+		_carregar_json(json_path)
+		in_dialogue = true
+		get_tree().root.add_child(dialogue_ui)
+		dialogue_ui.visible = true
+		_mostrar_cur_fala()
 
 func _carregar_json(path: String):
 	var file = FileAccess.open(path, FileAccess.READ)
@@ -41,11 +42,12 @@ func _avancar():
 	if cur_fala.has("evento"):
 		_executar_evento(cur_fala["evento"])
 	
-	if cur_fala.has("proximo"):
-		text_index = buscar_indice_por_id(cur_fala["proximo"])
-		_mostrar_cur_fala()
-	else:
-		_finalizar_dialogo()
+	if Input.is_action_just_pressed("atk"):
+		if cur_fala.has("proximo"):
+			text_index = buscar_indice_por_id(cur_fala["proximo"])
+			_mostrar_cur_fala()
+		else:
+			_finalizar_dialogo()
 
 func _choose(i: int):
 	var falas = cur_dialogue["falas"]
@@ -55,8 +57,11 @@ func _choose(i: int):
 	if opcao.has("evento"):
 		_executar_evento(opcao["evento"])
 	
-	text_index = buscar_indice_por_id(opcao["proximo"])
-	_mostrar_cur_fala()
+	if opcao.has("proximo"):
+		text_index = buscar_indice_por_id(opcao["proximo"])
+		_mostrar_cur_fala()
+	else:
+		_finalizar_dialogo()
 
 func buscar_indice_por_id(id: String) -> int:
 	var falas = cur_dialogue["falas"]
@@ -78,6 +83,7 @@ func _executar_evento(evento: String):
 			#nao ajuda
 
 func _finalizar_dialogo():
+	cur_npc.encontros+=1
 	in_dialogue = false
 	dialogue_ui.visible = false
 	text_index = 0

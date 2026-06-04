@@ -29,7 +29,11 @@ func _on_opcao_pressed(indice: int):
 	Dialogo._choose(indice)
 
 func _input(event):
+	# Detecta clique do botão esquerdo do mouse
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if Dialogo.in_dialogue and options_container.get_child_count() == 0:
+			Dialogo._avancar()
+	# Detecta tecla "act" (espaço, enter, etc.)
 	if event.is_action_pressed("act") and Dialogo.in_dialogue:
-		# Verifica se não tem opções
 		if options_container.get_child_count() == 0:
-			Dialogo.avancar()
+			Dialogo._avancar()

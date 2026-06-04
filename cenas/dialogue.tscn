@@ -11,7 +11,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -54.0
+offset_top = -130.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("2_3e78c")
@@ -25,24 +25,25 @@ layout_mode = 0
 offset_left = 3.0
 offset_right = 759.0
 offset_bottom = 24.0
+scale = Vector2(1.5, 1.5)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Name:"
 
 [node name="Text" type="RichTextLabel" parent="Box" unique_id=209702610]
 layout_mode = 0
 offset_left = 3.0
-offset_top = 18.999989
+offset_top = 27.999989
 offset_right = 1275.0
-offset_bottom = 61.666615
-scale = Vector2(0.75, 0.75)
+offset_bottom = 70.66661
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Text"
 
 [node name="Opções" type="HBoxContainer" parent="Box" unique_id=1885335080]
 layout_mode = 0
-offset_top = -34.0
-offset_right = 60.0
-offset_bottom = -3.0
+offset_left = 3.0
+offset_top = -33.0
+offset_right = 63.0
+offset_bottom = -2.0
 
 [node name="Button" type="Button" parent="Box/Opções" unique_id=652126135]
 layout_mode = 2

@@ -6,6 +6,7 @@ extends Area2D
 @export var npc_name: String = "NPC"
 
 var player_in_range = false
+var encontros = 0
 
 func _ready():
 	add_to_group("npc")
@@ -22,4 +23,4 @@ func _on_player_exited(body):
 
 func _process(delta):
 	if player_in_range and Input.is_action_just_pressed("act"):
-		Dialogo.iniciar_dialogo(self, json_path)
+		Dialogo.iniciar_dialogo(self, json_path, encontros)
