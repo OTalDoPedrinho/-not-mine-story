@@ -1,9 +1,7 @@
-extends CharacterBody2D
+extends Entity
 
 #region Variáveis
 #region @
-@export var hp = 3
-@export var speed = 100
 @export var j_force = 250
 @export var dash_spd = 300
 @export var dash_dur = 0.1

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://ck7o8oj4850m5"]
+
+[node name="Dialogue" type="Control" unique_id=1033400360]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Box" type="Panel" parent="." unique_id=17669090]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 7.0
+offset_right = 20.0
+offset_bottom = 47.0
+
+[node name="Name" type="RichTextLabel" parent="Box" unique_id=1949350957]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 71.0
+offset_bottom = 23.0
+scale = Vector2(0.5, 0.5)
+text = "Name:"
+
+[node name="Text" type="RichTextLabel" parent="Box" unique_id=209702610]
+layout_mode = 0
+offset_left = 0.9999999
+offset_top = 6.999999
+offset_right = 85.99999
+offset_bottom = 30.0
+scale = Vector2(0.4, 0.4)
+text = "Text"
+
+[node name="Opções" type="HBoxContainer" parent="Box" unique_id=1885335080]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 26.0
+offset_right = 36.0
+offset_bottom = 37.0
+
+[node name="Button" type="Button" parent="Box/Opções" unique_id=652126135]
+layout_mode = 2

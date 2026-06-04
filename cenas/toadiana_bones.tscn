@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://dbyen4fo13nbj"]
+
+[ext_resource type="Script" uid="uid://bn74mv6qyrn4t" path="res://scripts/classes/npc_class.gd" id="1_33nvc"]
+[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="2_hurt8"]
+
+[sub_resource type="JSON" id="JSON_1m40u"]
+data = {
+"falas": [{
+"id": "inicio",
+"opcoes": [{
+"proximo": "voltar_filhos",
+"texto": "Preciso voltar para meus filhos"
+}, {
+"proximo": "sair",
+"texto": "Sim, pode me ajudar"
+}],
+"texto": "Olá! Está perdido?"
+}, {
+"id": "voltar_filhos",
+"proximo": "sair",
+"texto": "Calma cara, você vai sair daqui, mas primeiro."
+}, {
+"id": "sair",
+"opcoes": [{
+"proximo": "perigoso",
+"texto": "Trabalho nas minas"
+}],
+"texto": "Calma, de onde você veio?"
+}, {
+"id": "perigoso",
+"proximo": "apresentacao",
+"texto": "Nas minas, é? É perigoso. Tem sorte estar de pé ainda"
+}, {
+"id": "apresentacao",
+"proximo": "dar_picareta",
+"texto": "Sou Toadiana Bones, o (ex)Grande explorador.
+Agora estou morrendo, estou sem conseguir sair daqui há muito tempo,
+sem comer ou beber."
+}, {
+"evento": "_dar_picareta",
+"id": "dar_picareta",
+"proximo": "pedir_ajuda",
+"texto": "Não acho que vou aguentar muito mais,
+pode pegar minha picareta"
+}, {
+"id": "pedir_ajuda",
+"opcoes": [{
+"evento": "_sim",
+"proximo": "sim",
+"texto": "Sim"
+}, {
+"evento": "_nao",
+"proximo": "nao",
+"texto": "Não"
+}],
+"texto": "Pode me dar uma ajudinha?"
+}],
+"id": "toadiana_bones",
+"name": "Toadiana Bones"
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hurt8"]
+radius = 27.018513
+
+[node name="Toadiana Bones" type="Area2D" unique_id=1378502993]
+script = ExtResource("1_33nvc")
+dialogo = SubResource("JSON_1m40u")
+metadata/_custom_type_script = "uid://bn74mv6qyrn4t"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1003203557]
+shape = SubResource("CircleShape2D_hurt8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1086637331]
+modulate = Color(1, 0.38431373, 0.79607844, 1)
+scale = Vector2(0.16406251, 0.1640625)
+texture = ExtResource("2_hurt8")

@@ -37,6 +37,6 @@ func _shoot():
 	
 	var shoot_dir = (player.global_position - global_position).normalized()
 	var projetil = projetil_cena.instantiate()
-	projetil.global_position = global_position + shoot_dir
+	projetil.global_position = global_position + shoot_dir * 40
 	projetil.velocity = shoot_dir * projetil.speed
 	get_parent().add_child(projetil)

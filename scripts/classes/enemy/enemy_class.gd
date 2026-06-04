@@ -1,9 +1,5 @@
 class_name Enemy
-extends CharacterBody2D
-
-@export var hp: int
-@export var speed: int
-@export var dmg: int
+extends Entity
 
 var direc = [1, -1]
 var dir = direc.pick_random()
@@ -11,7 +7,7 @@ var p_collidiu = false
 
 func _physics_process(delta: float) -> void:
 	# Aplica gravidade
-	velocity.y += Global.grvt
+	super(delta)
 	
 	# Movimento horizontal
 	velocity.x = speed * dir

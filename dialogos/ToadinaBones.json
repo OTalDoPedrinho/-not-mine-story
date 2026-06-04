@@ -1,0 +1,67 @@
+{
+	"id": "toadiana_bones",
+	"name": "Toadiana Bones",
+	"falas": [
+		{
+			"id": "inicio",
+			"texto": "Olá! Está perdido?",
+			"opcoes": [
+				{
+					"texto": "Preciso voltar para meus filhos",
+					"proximo": "voltar_filhos"
+				},
+				{
+					"texto": "Sim, pode me ajudar",
+					"proximo": "sair"
+				}
+			]
+		},
+		{
+			"id": "voltar_filhos",
+			"texto": "Calma cara, você vai sair daqui, mas primeiro.",
+			"proximo": "sair"
+		},
+		{
+			"id": "sair",
+			"texto": "Calma, de onde você veio?",
+			"opcoes": [
+				{
+					"texto": "Trabalho nas minas",
+					"proximo": "perigoso"
+				}
+			]
+		},
+		{
+			"id": "perigoso",
+			"texto": "Nas minas, é? É perigoso. Tem sorte estar de pé ainda",
+			"proximo": "apresentacao"
+		},
+		{
+			"id": "apresentacao",
+			"texto": "Sou Toadiana Bones, o (ex)Grande explorador.\nAgora estou morrendo, estou sem conseguir sair daqui há muito tempo,\nsem comer ou beber.",
+			"proximo": "dar_picareta"
+		},
+		{
+			"id": "dar_picareta",
+			"texto": "Não acho que vou aguentar muito mais,\npode pegar minha picareta",
+			"proximo": "pedir_ajuda",
+			"evento": "_dar_picareta"
+		},
+		{
+			"id": "pedir_ajuda",
+			"texto": "Pode me dar uma ajudinha?",
+			"opcoes": [
+				{
+					"texto": "Sim",
+					"proximo": "sim",
+					"evento": "_sim"
+				},
+				{
+					"texto": "Não",
+					"proximo": "nao",
+					"evento": "_nao"
+				}
+			]
+		}
+	]
+}

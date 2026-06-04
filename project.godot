@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*uid://b158gsr7l3xd5"
+Dialogo="*uid://bnxbnpk78187e"
 
 [display]
 
@@ -30,6 +31,7 @@ window/size/viewport_height=540
 enemy="grupo de todos os inmigos"
 player=""
 projetil=""
+npc=""
 
 [input]
 
