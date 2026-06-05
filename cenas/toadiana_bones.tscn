@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dbyen4fo13nbj"]
 
-[ext_resource type="Script" uid="uid://b03jolbwbeprh" path="res://scripts/npcs/toadiana_bones.gd" id="1_1m40u"]
+[ext_resource type="Script" uid="uid://bn74mv6qyrn4t" path="res://scripts/classes/npc_class.gd" id="1_1m40u"]
 [ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="2_hurt8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hurt8"]
@@ -9,7 +9,7 @@ radius = 27.018513
 [node name="Toadiana Bones" type="Area2D" unique_id=1378502993]
 script = ExtResource("1_1m40u")
 json_path = "res://dialogos/ToadinaBones.json"
-npc_name = "Toadiana Bones"
+npc_name = "Toadiana "
 metadata/_custom_type_script = "uid://bn74mv6qyrn4t"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1003203557]

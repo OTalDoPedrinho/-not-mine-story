@@ -10,13 +10,21 @@ var text_index: int = 0
 #endregion
 
 func iniciar_dialogo(npc: NPC, json_path: String, encontro: int):
-	if not in_dialogue:
-		cur_npc = npc
-		_carregar_json(json_path)
-		in_dialogue = true
-		get_tree().root.add_child(dialogue_ui)
-		dialogue_ui.visible = true
-		_mostrar_cur_fala()
+	cur_npc = npc
+	_carregar_json(json_path)
+	
+	# Seleciona o diálogo baseado no encontro
+	var encontro_key = str(encontro)
+	if cur_dialogue.has("encontros") and cur_dialogue["encontros"].has(encontro_key):
+		cur_dialogue = cur_dialogue["encontros"][encontro_key]
+	else:
+		print("Erro: Não encontrou o diálogo para encontro ", encontro_key)
+		return
+	
+	in_dialogue = true
+	get_tree().root.add_child(dialogue_ui)
+	dialogue_ui.visible = true
+	_mostrar_cur_fala()
 
 func _carregar_json(path: String):
 	var file = FileAccess.open(path, FileAccess.READ)
@@ -24,6 +32,7 @@ func _carregar_json(path: String):
 	cur_dialogue = JSON.parse_string(text)
 
 func _mostrar_cur_fala():
+	# Agora cur_dialogue é o conteúdo do encontro (tem "falas" diretamente)
 	var falas = cur_dialogue["falas"]
 	var cur_fala = falas[text_index]
 	
@@ -42,12 +51,11 @@ func _avancar():
 	if cur_fala.has("evento"):
 		_executar_evento(cur_fala["evento"])
 	
-	if Input.is_action_just_pressed("atk"):
-		if cur_fala.has("proximo"):
-			text_index = buscar_indice_por_id(cur_fala["proximo"])
-			_mostrar_cur_fala()
-		else:
-			_finalizar_dialogo()
+	if cur_fala.has("proximo"):
+		text_index = buscar_indice_por_id(cur_fala["proximo"])
+		_mostrar_cur_fala()
+	else:
+		_finalizar_dialogo()
 
 func _choose(i: int):
 	var falas = cur_dialogue["falas"]
@@ -77,13 +85,11 @@ func _executar_evento(evento: String):
 			Global.has_picaxe = true
 		"_sim":
 			pass
-			#ajuda
 		"_nao":
 			pass
-			#nao ajuda
 
 func _finalizar_dialogo():
-	cur_npc.encontros+=1
+	cur_npc.encontros += 1
 	in_dialogue = false
 	dialogue_ui.visible = false
 	text_index = 0
