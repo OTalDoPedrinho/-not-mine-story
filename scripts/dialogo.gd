@@ -1,4 +1,4 @@
-extends Node
+'''extends Node
 
 #region variaveis
 var cur_dialogue: Dictionary = {}
@@ -18,7 +18,6 @@ func iniciar_dialogo(npc: NPC, json_path: String, encontro: int):
 	if cur_dialogue.has("encontros") and cur_dialogue["encontros"].has(encontro_key):
 		cur_dialogue = cur_dialogue["encontros"][encontro_key]
 	else:
-		print("Erro: Não encontrou o diálogo para encontro ", encontro_key)
 		return
 	
 	in_dialogue = true
@@ -93,3 +92,4 @@ func _finalizar_dialogo():
 	in_dialogue = false
 	dialogue_ui.visible = false
 	text_index = 0
+'''

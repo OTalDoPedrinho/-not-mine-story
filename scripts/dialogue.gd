@@ -1,4 +1,4 @@
-extends CanvasLayer
+'''extends CanvasLayer
 
 @onready var name_label = $Box/Name
 @onready var text_label = $Box/Text
@@ -37,3 +37,4 @@ func _input(event):
 	if event.is_action_pressed("act") and Dialogo.in_dialogue:
 		if options_container.get_child_count() == 0:
 			Dialogo._avancar()
+'''
