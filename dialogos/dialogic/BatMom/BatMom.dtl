@@ -11,7 +11,7 @@ BatMom: Você viu os meus filhos?
 	- Sim
 		BatMom: Mas você fez algo com eles? Eles não sabem o que fazem.  O Escuridão fez isso com eles. Não sei o que faria se algum se machucasse.
 		if Global.bat_killer == true:
-			<Empty Text Event>
+			BatMom: Ah...
 	- Não
 		BatMom: Ah... por favor procure eles por mim
-		Bat Mom faz uma cara de tristesa
+join  center

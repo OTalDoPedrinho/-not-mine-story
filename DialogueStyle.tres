@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogicStyle" format=3 uid="uid://bv85fri5hpx46"]
+
+[ext_resource type="PackedScene" uid="uid://syki6k0e6aac" path="res://addons/dialogic/Modules/DefaultLayoutParts/Base_TextBubble/text_bubble_base.tscn" id="1_p7ah5"]
+[ext_resource type="Script" uid="uid://bwg6yncmh2cml" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_od80r"]
+[ext_resource type="PackedScene" uid="uid://cn674foxwedqu" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Input/full_advance_input_layer.tscn" id="3_cmmby"]
+[ext_resource type="PackedScene" uid="uid://d2it0xiap3gnt" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Textbubble/text_bubble_layer.tscn" id="4_tcvt3"]
+[ext_resource type="Script" uid="uid://dv08k6ljua6fm" path="res://addons/dialogic/Resources/dialogic_style.gd" id="5_um7nn"]
+
+[sub_resource type="Resource" id="Resource_osrjk"]
+script = ExtResource("2_od80r")
+scene = ExtResource("1_p7ah5")
+
+[sub_resource type="Resource" id="Resource_uxb8s"]
+script = ExtResource("2_od80r")
+scene = ExtResource("3_cmmby")
+
+[sub_resource type="Resource" id="Resource_nml7f"]
+script = ExtResource("2_od80r")
+scene = ExtResource("4_tcvt3")
+overrides = {
+"choices_text_font": "\"res://sprites/Daydream DEMO.otf\"",
+"name_label_font": "\"res://sprites/Daydream DEMO.otf\"",
+"normal_font": "\"res://sprites/Daydream DEMO.otf\""
+}
+
+[resource]
+script = ExtResource("5_um7nn")
+name = "DialogueStyle"
+layer_list = Array[String](["10", "11"])
+layer_info = {
+"": SubResource("Resource_osrjk"),
+"10": SubResource("Resource_uxb8s"),
+"11": SubResource("Resource_nml7f")
+}
+metadata/_latest_layer = "11"
