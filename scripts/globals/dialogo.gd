@@ -80,12 +80,15 @@ func buscar_indice_por_id(id: String) -> int:
 
 func _executar_evento(evento: String):
 	match evento:
-		"_dar_picareta":
+		"dar_picareta":
 			Global.has_picaxe = true
-		"_sim":
-			pass
-		"_nao":
-			pass
+		"checar_verdade":
+			if Global.bat_killer:
+				Global.mentiu_para_batmom = true
+				print(str(Global.mentiu_para_batmom))
+			else:
+				Global.mentiu_para_batmom = false
+				print(str(Global.mentiu_para_batmom))
 
 func _finalizar_dialogo():
 	cur_npc.encontros += 1

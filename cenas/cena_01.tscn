@@ -2,10 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="1_tayw6"]
 [ext_resource type="PackedScene" uid="uid://dxbthm5ini32n" path="res://cenas/player.tscn" id="2_is7n3"]
-[ext_resource type="PackedScene" uid="uid://dbyen4fo13nbj" path="res://cenas/toadiana_bones.tscn" id="4_jp4th"]
+[ext_resource type="PackedScene" uid="uid://cg76qeu011cgv" path="res://cenas/npcs/bat_mom.tscn" id="4_ce8lm"]
+[ext_resource type="PackedScene" uid="uid://dbyen4fo13nbj" path="res://cenas/npcs/toadiana_bones.tscn" id="4_jp4th"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_is7n3"]
-size = Vector2(1163, 115)
+size = Vector2(1163, 114.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur80h"]
 size = Vector2(20, 658)
@@ -23,7 +24,7 @@ texture = ExtResource("1_tayw6")
 [node name="Floor" type="StaticBody2D" parent="." unique_id=240617675]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=346820954]
-position = Vector2(497, 562)
+position = Vector2(497, 562.25)
 shape = SubResource("RectangleShape2D_is7n3")
 
 [node name="LWall" type="StaticBody2D" parent="." unique_id=12602392]
@@ -39,7 +40,10 @@ position = Vector2(964, 294)
 shape = SubResource("RectangleShape2D_ce8lm")
 
 [node name="Player" parent="." unique_id=1428523968 instance=ExtResource("2_is7n3")]
-position = Vector2(280, 485)
+position = Vector2(312, 484)
 
 [node name="Toadiana Bones" parent="." unique_id=1378502993 instance=ExtResource("4_jp4th")]
 position = Vector2(247, 494)
+
+[node name="Bat Mom" parent="." unique_id=1092346314 instance=ExtResource("4_ce8lm")]
+position = Vector2(346, 494)

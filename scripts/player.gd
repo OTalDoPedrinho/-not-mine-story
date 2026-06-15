@@ -12,11 +12,11 @@ extends Entity
 #region Booleans
 var iframed = true
 var squat = false
+var player_in_range = false
 #endregion
 
 #region Variables
 var knockback_dir
-
 var shoot_timer = 0.0
 var shoot_dur = 0.2
 var iframes_timer = 0
@@ -35,8 +35,6 @@ var cur_state:state = state.idle
 #endregion
 
 func _physics_process(delta: float) -> void:
-	print(str(hp))
-	
 	var move_x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	dash_timer += delta
 	
@@ -131,9 +129,11 @@ func _physics_process(delta: float) -> void:
 		if collider.is_in_group('projetil'):
 			continue
 	#endregion
+	
 	velocity.y += Global.grvt
 	
 	move_and_slide()
+	
 
 func _on_atk_hitbox_body_entered(body: Node2D) -> void:
 	if body is Enemy:

@@ -3,7 +3,7 @@ extends Area2D
 
 @export var ensinar: String = ""
 @export var json_path: String = ""
-@export var npc_name: String = "NPC"
+@onready var player = $"../Player"
 
 var player_in_range = false
 var encontros = 0
@@ -24,3 +24,4 @@ func _on_player_exited(body):
 func _process(delta):
 	if player_in_range and Input.is_action_just_pressed("act"):
 		Dialogo.iniciar_dialogo(self, json_path, encontros)
+		player.velocity.x = 0

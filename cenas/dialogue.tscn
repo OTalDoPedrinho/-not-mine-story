@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ck7o8oj4850m5"]
 
-[ext_resource type="Script" uid="uid://dnjxxutyx4xvc" path="res://scripts/dialogue.gd" id="1_2a7po"]
+[ext_resource type="Script" uid="uid://dnjxxutyx4xvc" path="res://scripts/dialogue_canvaslayer.gd" id="1_2a7po"]
 [ext_resource type="Texture2D" uid="uid://b7g8irw0tt3lt" path="res://sprites/TextBox.png" id="2_3e78c"]
 
 [node name="Dialogue" type="CanvasLayer" unique_id=2076664990]

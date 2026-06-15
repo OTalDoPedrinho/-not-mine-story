@@ -1,0 +1,84 @@
+{
+  "id": "bat_mom",
+  "name": "Mãe Morcego",
+  "encontros": {
+	"0": {
+	  "name": "Mãe Morcego",
+	  "falas": [
+		{
+		  "id": "inicio",
+		  "texto": "Olá",
+		  "opcoes": [
+			{
+			  "texto": "Você sabe como posso sair daqui?",
+			  "proximo": "explicar_saida"
+			},
+			{
+			  "texto": "Você viu os meus filhos?",
+			  "proximo": "perguntar_filhos"
+			}
+		  ]
+		},
+		{
+		  "id": "explicar_saida",
+		  "texto": "Seguindo até o fim da mina. Passando pelos insetos e os estranhos.\nNo final é só subir, mas...",
+		  "proximo": "perguntar_filhos"
+		},
+		{
+		  "id": "perguntar_filhos",
+		  "texto": "Você viu os meus filhos?",
+		  "opcoes": [
+			{
+			  "texto": "Vi não",
+			  "proximo": "fim_triste"
+			},
+			{
+			  "texto": "Os morceguinhos?",
+			  "proximo": "confirmar_filhos"
+			}
+		  ]
+		},
+		{
+		  "id": "confirmar_filhos",
+		  "texto": "Sim, eles mesmo",
+		  "opcoes": [
+			{
+			  "texto": "Sim",
+			  "proximo": "perguntar_machucou"
+			},
+			{
+			  "texto": "Não",
+			  "proximo": "fim_triste"
+			}
+		  ]
+		},
+		{
+		  "id": "perguntar_machucou",
+		  "texto": "Mas você fez algo com eles? Eles não sabem o que fazem.\nA Escuridão fez isso com eles. Não sei o que faria se algum se machucasse.",
+		  "opcoes": [
+			{
+			  "texto": "Não",
+			  "proximo": "fim_feliz"
+			},
+			{
+			  "texto": "Sim",
+			  "proximo": "fim_honesto"
+			}
+		  ]
+		},
+		{
+		  "id": "fim_triste",
+		  "texto": "Ah que pena. Obrigado. Tchau"
+		},
+		{
+		  "id": "fim_feliz",
+		  "texto": "Ah que bom. Mal posso esperar para ver eles"
+		},
+		{
+		  "id": "fim_honesto",
+		  "texto": "Ah. Talvez não tivesse como reverter. Obrigado pela honestidade"
+		}
+	  ]
+	}
+  }
+}
