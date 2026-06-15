@@ -8,7 +8,7 @@ radius = 27.018513
 
 [node name="Toadiana Bones" type="Area2D" unique_id=1378502993]
 script = ExtResource("1_1m40u")
-json_path = "res://dialogos/ToadinaBones.json"
+json_path = "res://dialogos/toadiana_bones.json"
 npc_name = "Toadiana "
 metadata/_custom_type_script = "uid://bn74mv6qyrn4t"
 

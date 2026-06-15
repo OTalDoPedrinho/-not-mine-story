@@ -1,0 +1,100 @@
+{
+	"id": "toadiana_bones",
+	"name": "Toadiana Bones",
+	"encontros": {
+		"0": {
+			"name": "Toadiana Bones",
+			"falas": [
+				{
+					"id": "inicio",
+					"texto": "Olá! Está perdido?",
+					"opcoes": [
+						{
+							"texto": "Preciso voltar para meus filhos",
+							"proximo": "voltar_filhos"
+						},
+						{
+							"texto": "Sim, pode me ajudar",
+							"proximo": "quero_sair"
+						}
+					]
+				},
+				{
+					"id": "voltar_filhos",
+					"texto": "Calma cara, primeiro você vai sair daqui.",
+					"proximo": "quero_sair"
+				},
+				{
+					"id": "quero_sair",
+					"texto": "Calma, de onde você veio?",
+					"opcoes": [
+						{
+							"texto": "Trabalho nas minas",
+							"proximo": "perigoso"
+						}
+					]
+				},
+				{
+					"id": "perigoso",
+					"texto": "Nas minas, é? É perigoso. Tem sorte estar de pé ainda",
+					"proximo": "apresentacao"
+				},
+				{
+					"id": "apresentacao",
+					"texto": "Sou Toadiana Bones, o (ex)Grande explorador.\nAgora estou morrendo, estou sem conseguir sair daqui há muito tempo,\nsem comer ou beber.",
+					"proximo": "dar_picareta"
+				},
+				{
+					"id": "dar_picareta",
+					"texto": "Não acho que vou aguentar muito mais,\npode pegar minha picareta",
+					"proximo": "pedir_ajuda",
+					"evento": "dar_picareta"
+				},
+				{
+					"id": "pedir_ajuda",
+					"texto": "Pode me dar uma ajudinha?",
+					"opcoes": [
+						{
+							"texto": "Sim, vou te ajudar",
+							"evento": "ajudar_toadiana",
+							"proximo": "fim"
+						},
+						{
+							"texto": "Não, vou seguir sozinho",
+							"evento": "abandonar_toadiana",
+							"proximo": "fim_abandono"
+						}
+					]
+				},
+				{
+					"id": "fim",
+					"texto": "Obrigado... você é um bom amigo. Agora me ajuda a passar daquela sala...",
+					"proximo": "batalha"
+				},
+				{
+					"id": "fim_abandono",
+					"texto": "Tudo bem... eu entendo... tente sobreviver..."
+				},
+				{
+					"id": "batalha",
+					"texto": "[Toadiana luta ao seu lado contra DarkScoop]\n...mas ela está fraca demais...\n\nToadiana: Vá... foge... e avise meus filhos...",
+					"evento": "toadiana_morre"
+				}
+			]
+		},
+		"1": {
+			"name": "Toadiana Bones",
+			"falas": [
+				{
+					"id": "inicio",
+					"texto": "Você voltou... ainda estou aqui...",
+					"proximo": "fim"
+				},
+				{
+					"id": "fim",
+					"texto": "Boa sorte, aventureiro."
+				}
+			]
+		}
+	}
+}

@@ -24,18 +24,9 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
-directories/dch_directory={
-"BatMom": "res://dialogos/dialogic/BatMom/BatMom.dch",
-"ToadianaBones": "res://dialogos/dialogic/ToadianaBones/ToadianaBones.dch"
-}
-directories/dtl_directory={
-"ToadianaBones": "res://dialogos/dialogic/ToadianaBones/ToadianaBones.dtl",
-"timeline": "res://dialogos/dialogic/BatMom/BatMom.dtl"
-}
-layout/style_directory={
-"": "res://DialogueStyle.tres",
-"DialogueStyle": "res://DialogueStyle.tres"
-}
+directories/dch_directory={}
+directories/dtl_directory={}
+layout/style_directory={}
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
@@ -70,8 +61,8 @@ audio/channel_defaults={
 }
 variables={}
 glossary/default_case_sensitive=true
-layout/style_list=["res://DialogueStyle.tres"]
-layout/default_style="res://DialogueStyle.tres"
+layout/style_list=[""]
+layout/default_style=""
 layout/end_behaviour=0
 text/input_action="act"
 text/autocolor_names=true

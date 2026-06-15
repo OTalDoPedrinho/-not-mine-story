@@ -1,4 +1,4 @@
-'''extends Node
+extends Node
 
 #region variaveis
 var cur_dialogue: Dictionary = {}
@@ -92,4 +92,3 @@ func _finalizar_dialogo():
 	in_dialogue = false
 	dialogue_ui.visible = false
 	text_index = 0
-'''
