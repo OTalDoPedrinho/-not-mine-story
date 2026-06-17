@@ -10,6 +10,7 @@ extends Entity
 #endregion
 
 #region Booleans
+var can_move = true
 var iframed = true
 var squat = false
 var player_in_range = false
@@ -35,7 +36,15 @@ var cur_state:state = state.idle
 #endregion
 
 func _physics_process(delta: float) -> void:
-	var move_x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
+	var move_x
+	
+	if can_move:
+		move_x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
+	else:
+		velocity.x = 0
+		velocity.y = 0
+		move_and_slide()
+	
 	dash_timer += delta
 	
 	# State Machine
@@ -112,7 +121,6 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 		state.talk:
 			velocity.x = 0
-			_dialogue()
 	
 	#region Colisão
 	for i in get_slide_collision_count():
@@ -133,14 +141,10 @@ func _physics_process(delta: float) -> void:
 	velocity.y += Global.grvt
 	
 	move_and_slide()
-	
 
 func _on_atk_hitbox_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		body.tomar_dano()
-
-func _dialogue():
-	pass
 
 func _shoot(delta: float):
 	if shoot_timer == 0.0:
@@ -154,3 +158,9 @@ func _shoot(delta: float):
 	shoot_timer += delta
 	if shoot_timer >= shoot_dur:
 		cur_state = state.idle
+
+func set_pode_mover(valor: bool):
+	can_move = valor
+	if not can_move:
+		velocity.x = 0
+		velocity.y = 0

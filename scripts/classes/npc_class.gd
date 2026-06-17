@@ -3,7 +3,6 @@ extends Area2D
 
 @export var ensinar: String = ""
 @export var json_path: String = ""
-@onready var player = $"../Player"
 
 var player_in_range = false
 var encontros = 0
@@ -24,4 +23,8 @@ func _on_player_exited(body):
 func _process(delta):
 	if player_in_range and Input.is_action_just_pressed("act"):
 		Dialogo.iniciar_dialogo(self, json_path, encontros)
-		player.velocity.x = 0
+		
+		var player = get_tree().get_first_node_in_group("player")
+		if player:
+			player.set_process(false)
+			player.set_physics_process(false)

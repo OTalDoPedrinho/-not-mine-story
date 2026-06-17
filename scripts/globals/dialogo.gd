@@ -95,3 +95,8 @@ func _finalizar_dialogo():
 	in_dialogue = false
 	dialogue_ui.visible = false
 	text_index = 0
+	
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.set_process(true)
+		player.set_physics_process(true)
