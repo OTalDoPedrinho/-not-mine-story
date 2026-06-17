@@ -10,8 +10,7 @@ extends Entity
 #endregion
 
 #region Booleans
-var can_move = true
-var iframed = true
+var iframed = false
 var squat = false
 var player_in_range = false
 #endregion
@@ -36,14 +35,7 @@ var cur_state:state = state.idle
 #endregion
 
 func _physics_process(delta: float) -> void:
-	var move_x
-	
-	if can_move:
-		move_x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
-	else:
-		velocity.x = 0
-		velocity.y = 0
-		move_and_slide()
+	var move_x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	
 	dash_timer += delta
 	
@@ -134,6 +126,8 @@ func _physics_process(delta: float) -> void:
 			cur_state = state.take_dmg
 			knockback_dir = sign(global_position.x - collider.global_position.x)
 			collider.p_collidiu = false
+			iframed = true
+			print(str(hp))
 		if collider.is_in_group('projetil'):
 			continue
 	#endregion
@@ -158,9 +152,3 @@ func _shoot(delta: float):
 	shoot_timer += delta
 	if shoot_timer >= shoot_dur:
 		cur_state = state.idle
-
-func set_pode_mover(valor: bool):
-	can_move = valor
-	if not can_move:
-		velocity.x = 0
-		velocity.y = 0
