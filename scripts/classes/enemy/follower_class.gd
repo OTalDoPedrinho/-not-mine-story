@@ -7,8 +7,7 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 	
 	var player = get_tree().get_first_node_in_group("player")
-	if player and not player.squat:
-		
+	if player:
 		var dist = global_position.distance_to(player.global_position)
 		
 		if dist<=detect_range:

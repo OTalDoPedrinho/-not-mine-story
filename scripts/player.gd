@@ -5,18 +5,16 @@ extends Entity
 @export var j_force = 250
 @export var dash_spd = 300
 @export var dash_dur = 0.1
-@export var iframes_time = .75
+@export var iframes_time = 1.5
 @export var projetil_cena: PackedScene = preload("res://cenas/projetil.tscn")
 #endregion
 
 #region Booleans
 var iframed = false
-var squat = false
 var player_in_range = false
 #endregion
 
 #region Variables
-var knockback_dir
 var shoot_timer = 0.0
 var shoot_dur = 0.2
 var iframes_timer = 0
@@ -28,7 +26,7 @@ var atk_dur = 0.15
 #endregion
 
 #region States
-enum state {idle, walk, jump, dash, atk, shoot, squat, take_dmg, die, talk}
+enum state {idle, walk, jump, dash, atk, shoot, take_dmg, die, talk}
 var cur_state:state = state.idle
 #endregion
 
@@ -95,13 +93,8 @@ func _physics_process(delta: float) -> void:
 				cur_state = state.idle
 		state.shoot:
 			_shoot(delta)
-		state.squat:
-			squat = true
 		state.take_dmg:
-			pass
 			iframes_timer+=delta
-			velocity.x = knockback_dir*25 #knockback
-			velocity.y = -15 #knockback
 			
 			if iframes_timer>=iframes_time:
 				iframes_timer = 0
@@ -124,7 +117,6 @@ func _physics_process(delta: float) -> void:
 		if collider is Enemy and not iframed and collider.p_collidiu:
 			hp -= collider.dmg
 			cur_state = state.take_dmg
-			knockback_dir = sign(global_position.x - collider.global_position.x)
 			collider.p_collidiu = false
 			iframed = true
 			print(str(hp))
