@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dxbthm5ini32n" path="res://cenas/player.tscn" id="2_is7n3"]
 [ext_resource type="PackedScene" uid="uid://cg76qeu011cgv" path="res://cenas/npcs/bat_mom.tscn" id="4_ce8lm"]
 [ext_resource type="PackedScene" uid="uid://dbyen4fo13nbj" path="res://cenas/npcs/toadiana_bones.tscn" id="4_jp4th"]
-[ext_resource type="Script" uid="uid://b6sw2dvqpflv3" path="res://scripts/classes/bat_class.gd" id="5_jp4th"]
+[ext_resource type="Script" uid="uid://b6sw2dvqpflv3" path="res://scripts/classes/enemy/bat_class.gd" id="5_jp4th"]
 [ext_resource type="Texture2D" uid="uid://cg8iegrbs5038" path="res://sprites/Tiles/minefloortile01.png" id="6_vv1ha"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_is7n3"]
@@ -69,14 +69,14 @@ position = Vector2(247, 485)
 [node name="Bat Mom" parent="." unique_id=1092346314 instance=ExtResource("4_ce8lm")]
 position = Vector2(344, 485)
 
-[node name="Enemy01" type="CharacterBody2D" parent="." unique_id=1652569717]
-position = Vector2(278, 443)
+[node name="Enemy01" type="CharacterBody2D" parent="." unique_id=569338065]
+position = Vector2(279, 423)
+motion_mode = 1
 script = ExtResource("5_jp4th")
-detect_range = 250
+detect_range = 100
 hp = 3
 speed = 100
 dmg = 1.0
-mass = 10.0
 metadata/_custom_type_script = "uid://b6sw2dvqpflv3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy01" unique_id=114403077]

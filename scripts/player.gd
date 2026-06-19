@@ -37,6 +37,11 @@ func _physics_process(delta: float) -> void:
 	
 	dash_timer += delta
 	
+	if velocity.x > 0:
+		$Sprite2D.flip_h = false
+	elif velocity.x < 0:
+		$Sprite2D.flip_h = true
+	
 	# State Machine
 	match cur_state:
 		state.idle:
@@ -62,10 +67,6 @@ func _physics_process(delta: float) -> void:
 			
 			if velocity.x == 0:
 				cur_state = state.idle
-			if velocity.x > 0:
-				$Sprite2D.flip_h = false
-			elif velocity.x < 0:
-				$Sprite2D.flip_h = true
 			
 			if Input.is_action_just_pressed("jump") and is_on_floor():
 				cur_state = state.jump
@@ -79,8 +80,11 @@ func _physics_process(delta: float) -> void:
 				cur_state = state.shoot
 				shoot_timer = 0
 		state.jump:
+			$Sprite2D.play("Jump")
 			velocity.y = -j_force
-			cur_state = state.idle
+			
+			if is_on_floor():
+				cur_state = state.idle
 			
 			if Input.is_action_just_pressed("shoot"):
 				cur_state = state.shoot

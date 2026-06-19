@@ -1,18 +1,27 @@
 [gd_scene format=3 uid="uid://dxbthm5ini32n"]
 
 [ext_resource type="Script" uid="uid://71o2cshl1sle" path="res://scripts/player.gd" id="1_unwft"]
-[ext_resource type="Texture2D" path="res://sprites/Dad/24DadIdle1.png" id="2_15dsx"]
-[ext_resource type="Texture2D" path="res://sprites/Dad/24DadIdle2.png" id="3_8v4ht"]
-[ext_resource type="Texture2D" path="res://sprites/Dad/24DadIdle3.png" id="4_4y2i1"]
-[ext_resource type="Texture2D" path="res://sprites/Dad/24DadIdle4.png" id="5_ogt8j"]
+[ext_resource type="Texture2D" uid="uid://bf6lo0j6qlalh" path="res://sprites/Dad/Idle/24DadIdle1.png" id="2_ym2kn"]
+[ext_resource type="Texture2D" uid="uid://byyese1fvkus1" path="res://sprites/Dad/Idle/24DadIdle2.png" id="3_vtxll"]
+[ext_resource type="Texture2D" uid="uid://d4k6v7nvv7nkb" path="res://sprites/Dad/Idle/24DadIdle3.png" id="4_s1iqd"]
+[ext_resource type="Texture2D" uid="uid://cbb56fi6d0816" path="res://sprites/Dad/Idle/24DadIdle4.png" id="5_6ptbh"]
+[ext_resource type="Texture2D" uid="uid://dvspdhheao1ps" path="res://sprites/Dad/jump/24DadJump1.png" id="6_u4uu3"]
 [ext_resource type="Texture2D" uid="uid://ess77xjv2f0i" path="res://sprites/Dad/Walk/24DadWalk1.png" id="6_ym2kn"]
+[ext_resource type="Texture2D" uid="uid://bcwfsk5t34ud0" path="res://sprites/Dad/jump/24DadJump2.png" id="7_luhlb"]
 [ext_resource type="Texture2D" uid="uid://6ujxbnxd4x5e" path="res://sprites/Dad/Walk/24DadWalk2.png" id="7_vtxll"]
+[ext_resource type="Texture2D" uid="uid://bkpdt45cdo0hd" path="res://sprites/Dad/jump/24DadJump3.png" id="8_821w2"]
 [ext_resource type="Texture2D" uid="uid://chqty74fnjyjc" path="res://sprites/Dad/Walk/24DadWalk3.png" id="8_s1iqd"]
 [ext_resource type="Texture2D" uid="uid://sm80eh70gptt" path="res://sprites/Dad/Walk/24DadWalk4.png" id="9_6ptbh"]
+[ext_resource type="Texture2D" uid="uid://coyxyh7x88fsr" path="res://sprites/Dad/jump/24DadJump4.png" id="9_ldhcr"]
+[ext_resource type="Texture2D" uid="uid://cqg4fu3saeexv" path="res://sprites/Dad/jump/24DadJump5.png" id="10_i3yeh"]
 [ext_resource type="Texture2D" uid="uid://bx8ium1sy3by6" path="res://sprites/Dad/Walk/24DadWalk5.png" id="10_uk4ck"]
 [ext_resource type="Texture2D" uid="uid://mgyls8uveat6" path="res://sprites/Dad/Walk/24DadWalk6.png" id="11_gonb2"]
+[ext_resource type="Texture2D" uid="uid://dw5cdjytakdj0" path="res://sprites/Dad/jump/24DadJump6.png" id="11_gqqv0"]
 [ext_resource type="Texture2D" uid="uid://gtr785pr55qr" path="res://sprites/Dad/Walk/24DadWalk7.png" id="12_j4uu1"]
+[ext_resource type="Texture2D" uid="uid://dug34bwgipm0y" path="res://sprites/Dad/jump/24DadJump7.png" id="12_qwrs5"]
 [ext_resource type="Texture2D" uid="uid://bhyupalujsrq7" path="res://sprites/Dad/Walk/24DadWalk8.png" id="13_86n0t"]
+[ext_resource type="Texture2D" uid="uid://p2vv2wwfagrf" path="res://sprites/Dad/jump/24DadJump8.png" id="13_rmatm"]
+[ext_resource type="Texture2D" uid="uid://bncmd6uohy2g1" path="res://sprites/Dad/jump/24DadJump9.png" id="14_4coxd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_unwft"]
 
@@ -20,20 +29,52 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_15dsx")
+"texture": ExtResource("2_ym2kn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_8v4ht")
+"texture": ExtResource("3_vtxll")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_4y2i1")
+"texture": ExtResource("4_s1iqd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ogt8j")
+"texture": ExtResource("5_6ptbh")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_u4uu3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_luhlb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_821w2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ldhcr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_i3yeh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gqqv0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_qwrs5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_rmatm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_4coxd")
+}],
+"loop": 1,
+"name": &"Jump",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -60,7 +101,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_86n0t")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Walk",
 "speed": 12.0
 }]
@@ -82,8 +123,8 @@ mass = 1.0
 material = SubResource("ShaderMaterial_unwft")
 position = Vector2(9.536743e-07, 9.536743e-07)
 sprite_frames = SubResource("SpriteFrames_15dsx")
-animation = &"Idle"
-frame_progress = 0.993691
+animation = &"Walk"
+frame_progress = 0.39658913
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741506162]
 position = Vector2(0, 3.5)

@@ -13,7 +13,7 @@ config_version=5
 config/name="(not)Mine Story"
 config/tags=PackedStringArray("comercial")
 run/main_scene="uid://bcjl514n4i5kv"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
