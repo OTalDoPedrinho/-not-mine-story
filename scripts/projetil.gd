@@ -1,9 +1,7 @@
-extends CharacterBody2D
+extends Entity
 
 var velocity_vector = Vector2.RIGHT
-var dmg = 1
 var shooter
-var speed = 500
 
 func _ready():
 	await get_tree().create_timer(2.0).timeout

@@ -7,6 +7,10 @@
 
 [node name="Projetil" type="CharacterBody2D" unique_id=349732082 groups=["projetil"]]
 script = ExtResource("1_j4buw")
+hp = 1
+speed = 500
+dmg = 2.0
+mass = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=723412417]
 modulate = Color(0.17211533, 0.1721153, 0.1721153, 1)

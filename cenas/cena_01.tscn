@@ -66,12 +66,11 @@ position = Vector2(580, 437)
 [node name="Toadiana Bones" parent="." unique_id=1378502993 instance=ExtResource("4_jp4th")]
 position = Vector2(247, 485)
 
-[node name="Bat Mom" parent="." unique_id=1092346314 instance=ExtResource("4_ce8lm")]
+[node name="Bat Mom NPC" parent="." unique_id=1092346314 instance=ExtResource("4_ce8lm")]
 position = Vector2(344, 485)
 
 [node name="Enemy01" type="CharacterBody2D" parent="." unique_id=569338065]
 position = Vector2(279, 423)
-motion_mode = 1
 script = ExtResource("5_jp4th")
 detect_range = 100
 hp = 3

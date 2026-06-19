@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://brwu1827ifvvd"]
+
+[ext_resource type="Script" uid="uid://dr65twcone7t5" path="res://scripts/classes/boss_class.gd" id="1_env78"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+
+[node name="Simon Boss" type="CharacterBody2D" unique_id=1291563727]
+script = ExtResource("1_env78")
+hp = 90
+metadata/_custom_type_script = "uid://dr65twcone7t5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=673656516]
+shape = SubResource("RectangleShape2D_g4v7s")

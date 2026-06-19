@@ -140,6 +140,11 @@ func _physics_process(delta: float) -> void:
 	velocity.y += Global.grvt
 	
 	move_and_slide()
+	
+	if Global.has_picaxe == false:
+		dmg = 1
+	else:
+		dmg = 1.75
 
 func _on_atk_hitbox_body_entered(body: Node2D) -> void:
 	if body is Enemy:

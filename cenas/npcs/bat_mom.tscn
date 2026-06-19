@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hurt8"]
 radius = 27.018513
 
-[node name="Bat Mom" type="Area2D" unique_id=1378502993]
+[node name="Bat Mom NPC" type="Area2D" unique_id=1378502993]
 script = ExtResource("1_qabw6")
 json_path = "res://dialogos/bat_mom.json"
 metadata/_custom_type_script = "uid://bn74mv6qyrn4t"
