@@ -40,6 +40,8 @@ func _physics_process(delta: float) -> void:
 	# State Machine
 	match cur_state:
 		state.idle:
+			$Sprite2D.play("Idle")
+			
 			if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
 				cur_state = state.walk
 			if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -56,8 +58,15 @@ func _physics_process(delta: float) -> void:
 		state.walk:
 			velocity.x = move_x * speed
 			
+			$Sprite2D.play("Walk")
+			
 			if velocity.x == 0:
 				cur_state = state.idle
+			if velocity.x > 0:
+				$Sprite2D.flip_h = false
+			elif velocity.x < 0:
+				$Sprite2D.flip_h = true
+			
 			if Input.is_action_just_pressed("jump") and is_on_floor():
 				cur_state = state.jump
 			if Input.is_action_just_pressed("dash") and Global.has_dash and dash_timer >= dash_cooldown:

@@ -1,14 +1,75 @@
 [gd_scene format=3 uid="uid://dxbthm5ini32n"]
 
-[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="1_8or6t"]
 [ext_resource type="Script" uid="uid://71o2cshl1sle" path="res://scripts/player.gd" id="1_unwft"]
+[ext_resource type="Texture2D" path="res://sprites/Dad/24DadIdle1.png" id="2_15dsx"]
+[ext_resource type="Texture2D" path="res://sprites/Dad/24DadIdle2.png" id="3_8v4ht"]
+[ext_resource type="Texture2D" path="res://sprites/Dad/24DadIdle3.png" id="4_4y2i1"]
+[ext_resource type="Texture2D" path="res://sprites/Dad/24DadIdle4.png" id="5_ogt8j"]
+[ext_resource type="Texture2D" uid="uid://ess77xjv2f0i" path="res://sprites/Dad/Walk/24DadWalk1.png" id="6_ym2kn"]
+[ext_resource type="Texture2D" uid="uid://6ujxbnxd4x5e" path="res://sprites/Dad/Walk/24DadWalk2.png" id="7_vtxll"]
+[ext_resource type="Texture2D" uid="uid://chqty74fnjyjc" path="res://sprites/Dad/Walk/24DadWalk3.png" id="8_s1iqd"]
+[ext_resource type="Texture2D" uid="uid://sm80eh70gptt" path="res://sprites/Dad/Walk/24DadWalk4.png" id="9_6ptbh"]
+[ext_resource type="Texture2D" uid="uid://bx8ium1sy3by6" path="res://sprites/Dad/Walk/24DadWalk5.png" id="10_uk4ck"]
+[ext_resource type="Texture2D" uid="uid://mgyls8uveat6" path="res://sprites/Dad/Walk/24DadWalk6.png" id="11_gonb2"]
+[ext_resource type="Texture2D" uid="uid://gtr785pr55qr" path="res://sprites/Dad/Walk/24DadWalk7.png" id="12_j4uu1"]
+[ext_resource type="Texture2D" uid="uid://bhyupalujsrq7" path="res://sprites/Dad/Walk/24DadWalk8.png" id="13_86n0t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_unwft"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_15dsx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_15dsx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8v4ht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4y2i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ogt8j")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ym2kn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vtxll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_s1iqd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6ptbh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_uk4ck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gonb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_j4uu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_86n0t")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 12.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unwft"]
+size = Vector2(12, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kthid"]
-size = Vector2(9, 20)
+size = Vector2(8.5, 9)
 
 [node name="Player" type="CharacterBody2D" unique_id=1428523968 groups=["player"]]
 script = ExtResource("1_unwft")
@@ -17,17 +78,19 @@ speed = 100
 dmg = 1.0
 mass = 1.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=43848691]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=576992972]
 material = SubResource("ShaderMaterial_unwft")
 position = Vector2(9.536743e-07, 9.536743e-07)
-scale = Vector2(0.15625, 0.15625)
-texture = ExtResource("1_8or6t")
+sprite_frames = SubResource("SpriteFrames_15dsx")
+animation = &"Idle"
+frame_progress = 0.993691
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741506162]
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_unwft")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1605702113]
-zoom = Vector2(2, 2)
+zoom = Vector2(2.5, 2.5)
 limit_left = 0
 limit_top = 0
 position_smoothing_enabled = true
@@ -40,7 +103,7 @@ editor_draw_drag_margin = true
 [node name="AtkHitbox" type="Area2D" parent="." unique_id=490564412]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtkHitbox" unique_id=173258603]
-position = Vector2(14.5, 0)
+position = Vector2(10.25, 2.5)
 shape = SubResource("RectangleShape2D_kthid")
 disabled = true
 
