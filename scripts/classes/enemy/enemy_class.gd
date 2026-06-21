@@ -9,6 +9,8 @@ func _physics_process(delta: float) -> void:
 	# Aplica gravidade
 	super(delta)
 	
+	p_collidiu = false
+	
 	# Movimento horizontal
 	velocity.x = speed * dir
 	

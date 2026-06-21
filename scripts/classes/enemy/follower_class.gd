@@ -1,7 +1,7 @@
 class_name Follower
 extends Enemy
 
-@export var detect_range: int
+@export var detect_range: int = 75
 
 func _physics_process(delta: float) -> void:
 	super(delta)
@@ -12,4 +12,5 @@ func _physics_process(delta: float) -> void:
 		
 		if dist<=detect_range:
 			var follow_dir = sign(player.global_position.x - global_position.x)
-			velocity.x = follow_dir * speed
+			dir = follow_dir
+			move_and_slide()

@@ -27,7 +27,7 @@ var atk_dur = 0.15
 
 #region States
 enum state {idle, walk, jump, dash, atk, shoot, take_dmg, die, talk}
-var cur_state:state = state.idle
+var cur_state: state = state.idle
 #endregion
 
 #endregion

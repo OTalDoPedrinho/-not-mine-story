@@ -114,7 +114,7 @@ size = Vector2(8.5, 9)
 
 [node name="Player" type="CharacterBody2D" unique_id=1428523968 groups=["player"]]
 script = ExtResource("1_unwft")
-hp = 5
+hp_max = 5
 speed = 100
 dmg = 0.5
 mass = 1.0

@@ -1,13 +1,22 @@
 [gd_scene format=3 uid="uid://brwu1827ifvvd"]
 
-[ext_resource type="Script" uid="uid://dr65twcone7t5" path="res://scripts/classes/boss_class.gd" id="1_env78"]
+[ext_resource type="Script" uid="uid://c2apdba7712ld" path="res://scripts/simon_boss.gd" id="1_tkgyj"]
+[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="2_n5nxh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(128, 128)
 
 [node name="Simon Boss" type="CharacterBody2D" unique_id=1291563727]
-script = ExtResource("1_env78")
-hp = 90
+script = ExtResource("1_tkgyj")
+hp_max = 90
+speed = 100
+dmg = 2.5
+mass = 2.0
 metadata/_custom_type_script = "uid://dr65twcone7t5"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=103590997]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_n5nxh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=673656516]
 shape = SubResource("RectangleShape2D_g4v7s")
