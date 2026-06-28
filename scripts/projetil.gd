@@ -15,10 +15,3 @@ func _physics_process(delta):
 		var collider = get_slide_collision(0).get_collider()
 		if collider.has_method("tomar_dano"):
 			collider.tomar_dano()
-	
-	
-	'''for i in get_slide_collision_count():
-		var collider = get_slide_collision(i).get_collider()
-		
-		if collider == shooter:
-			'''

@@ -41,12 +41,12 @@
 				},
 				{
 					"id": "apresentacao",
-					"texto": "Sou Toadiana Bones, o (ex)Grande explorador.\nAgora estou morrendo, estou sem conseguir sair daqui há muito tempo,\nsem comer ou beber.",
+					"texto": "Sou Toadiana Bones, o (ex)Grande explorador.Agora estou morrendo, estou sem conseguir sair daqui há muito tempo,\nsem comer ou beber.",
 					"proximo": "dar_picareta"
 				},
 				{
 					"id": "dar_picareta",
-					"texto": "Não acho que vou aguentar muito mais,\npode pegar minha picareta",
+					"texto": "Não acho que vou aguentar muito mais,pode pegar minha picareta",
 					"proximo": "pedir_ajuda",
 					"evento": "dar_picareta"
 				},

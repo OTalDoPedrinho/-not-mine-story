@@ -3,10 +3,10 @@ extends CharacterBody2D
 
 @export var hp_max: int
 @export var speed: int
-@export var dmg: float
+@export var dmg: float = 1
 @export var mass: float
 
-var hp
+@onready var hp = hp_max
 
 func _physics_process(delta: float) -> void:
 	velocity.y+=Global.grvt*mass

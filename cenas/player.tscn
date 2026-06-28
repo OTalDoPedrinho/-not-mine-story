@@ -74,7 +74,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"Jump",
-"speed": 12.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -114,6 +114,7 @@ size = Vector2(8.5, 9)
 
 [node name="Player" type="CharacterBody2D" unique_id=1428523968 groups=["player"]]
 script = ExtResource("1_unwft")
+iframes_time = 0.15
 hp_max = 5
 speed = 100
 dmg = 0.5
@@ -124,14 +125,14 @@ material = SubResource("ShaderMaterial_unwft")
 position = Vector2(9.536743e-07, 9.536743e-07)
 sprite_frames = SubResource("SpriteFrames_15dsx")
 animation = &"Walk"
-frame_progress = 0.39658913
+frame_progress = 0.27689165
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741506162]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_unwft")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1605702113]
-zoom = Vector2(2.5, 2.5)
+limit_enabled = false
 limit_left = 0
 limit_top = 0
 position_smoothing_enabled = true

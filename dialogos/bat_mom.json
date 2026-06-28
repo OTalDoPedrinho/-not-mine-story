@@ -21,7 +21,7 @@
 				},
 				{
 				  "id": "explicar_saida",
-				  "texto": "Seguindo até o fim da mina. Passando pelos insetos e os estranhos.\nNo final é só subir, mas...",
+				  "texto": "Seguindo até o fim da mina. Passando pelos insetos e os estranhos.No final é só subir, mas...",
 				  "proximo": "perguntar_filhos"
 				},
 				{
@@ -54,7 +54,7 @@
 				},
 				{
 				  "id": "perguntar_machucou",
-				  "texto": "Mas você fez algo com eles? Eles não sabem o que fazem.\nA Escuridão fez isso com eles. Não sei o que faria se algum se machucasse.",
+				  "texto": "Mas você fez algo com eles? Eles não sabem o que fazem.A Escuridão fez isso com eles. Não sei o que faria se algum se machucasse.",
 				  "opcoes": [
 					{
 					  "texto": "Não",
