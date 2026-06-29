@@ -1,5 +1,7 @@
 extends Entity
 
+#ESTOU DESESPERADO
+
 #region Variáveis
 #region Coyote
 var coyote_time: float = 0.15
