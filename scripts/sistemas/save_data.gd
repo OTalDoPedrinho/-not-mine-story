@@ -11,3 +11,5 @@ class_name  SaveResource
 @export var toadiana_ajudou: bool
 @export var bosses_derrotados: Array[String]
 @export var npcs_encontrados: Array[String]
+@export var volume: float = 1.0
+@export var fullscreen: bool = false

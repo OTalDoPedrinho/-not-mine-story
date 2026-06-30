@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://32glyu1r7l5f"]
+
+[ext_resource type="Script" uid="uid://dwx2185heppas" path="res://scripts/sistemas/travesseiro.gd" id="1_dijt4"]
+[ext_resource type="Texture2D" uid="uid://b7g8irw0tt3lt" path="res://sprites/TextBox.png" id="2_dijt4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yf5fn"]
+radius = 17.0
+
+[node name="Travesseiro" type="Node2D" unique_id=1174028166]
+script = ExtResource("1_dijt4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1319776838]
+texture = ExtResource("2_dijt4")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1238791842]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1620456149]
+shape = SubResource("CircleShape2D_yf5fn")

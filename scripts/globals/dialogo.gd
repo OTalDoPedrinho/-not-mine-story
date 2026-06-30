@@ -6,7 +6,7 @@ var cur_npc: NPC
 var in_dialogue: bool = false
 var text_index: int = 0
 
-@onready var dialogue_ui = preload("res://cenas/dialogue.tscn").instantiate()
+@onready var dialogue_ui = preload("res://cenas/sistemas/dialogue.tscn").instantiate()
 #endregion
 
 func iniciar_dialogo(npc: NPC, json_path: String, encontro: int):

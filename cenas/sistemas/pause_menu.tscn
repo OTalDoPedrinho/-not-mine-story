@@ -34,11 +34,50 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "RESUME"
 
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1045142260]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "OPÇÕES"
+
 [node name="Button2" type="Button" parent="VBoxContainer" unique_id=381408427]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "QUIT GAME"
+text = "VOLTAR AO MENU
+"
+
+[node name="Opcoes" type="VBoxContainer" parent="." unique_id=1152672412]
+visible = false
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_right = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="Opcoes" unique_id=792230968]
+layout_mode = 2
+text = "TELA CHEIA"
+
+[node name="Label" type="Label" parent="Opcoes" unique_id=1656502862]
+layout_mode = 2
+text = "VOLUME"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Opcoes" unique_id=617186732]
+layout_mode = 2
+
+[node name="Voltar" type="Button" parent="Opcoes" unique_id=650117370]
+layout_mode = 2
+text = "VOLTAR"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="button_up" from="Opcoes/CheckButton" to="." method="_on_check_button_button_up"]
+[connection signal="value_changed" from="Opcoes/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Opcoes/Voltar" to="." method="_on_voltar_pressed"]

@@ -23,9 +23,10 @@
 [ext_resource type="Texture2D" uid="uid://p2vv2wwfagrf" path="res://sprites/Dad/jump/24DadJump8.png" id="13_rmatm"]
 [ext_resource type="Texture2D" uid="uid://bncmd6uohy2g1" path="res://sprites/Dad/jump/24DadJump9.png" id="14_4coxd"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_unwft"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unwft"]
+size = Vector2(12, 17)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_15dsx"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -41,7 +42,7 @@ animations = [{
 "texture": ExtResource("5_6ptbh")
 }],
 "loop": 1,
-"name": &"Idle",
+"name": &"idle",
 "speed": 6.0
 }, {
 "frames": [{
@@ -73,8 +74,8 @@ animations = [{
 "texture": ExtResource("14_4coxd")
 }],
 "loop": 1,
-"name": &"Jump",
-"speed": 14.0
+"name": &"jump",
+"speed": 13.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -102,12 +103,9 @@ animations = [{
 "texture": ExtResource("13_86n0t")
 }],
 "loop": 1,
-"name": &"Walk",
+"name": &"walk",
 "speed": 12.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_unwft"]
-size = Vector2(12, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kthid"]
 size = Vector2(8.5, 9)
@@ -120,16 +118,13 @@ speed = 100
 dmg = 0.5
 mass = 1.0
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=576992972]
-material = SubResource("ShaderMaterial_unwft")
-position = Vector2(9.536743e-07, 9.536743e-07)
-sprite_frames = SubResource("SpriteFrames_15dsx")
-animation = &"Walk"
-frame_progress = 0.27689165
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=741506162]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_unwft")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1778803492]
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+animation = &"walk"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1605702113]
 limit_enabled = false

@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dkg7d6us0ykjj"]
+
+[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="1_q0sk5"]
+[ext_resource type="Script" uid="uid://iaynrc52lxt6" path="res://scripts/sistemas/main_menu.gd" id="1_wi4eu"]
+
+[node name="Main Menu" type="CanvasLayer" unique_id=1771545351]
+script = ExtResource("1_wi4eu")
+
+[node name="BG" type="TextureRect" parent="." unique_id=210913549]
+modulate = Color(0, 1, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_q0sk5")
+
+[node name="Main" type="VBoxContainer" parent="." unique_id=1782232185]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.5
+offset_top = -156.0
+offset_right = 68.5
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Novo Jogo" type="Button" parent="Main" unique_id=347703157]
+layout_mode = 2
+text = "NOVO JOGO"
+
+[node name="Carregar Jogo" type="Button" parent="Main" unique_id=24344614]
+layout_mode = 2
+disabled = true
+text = "CARREGAR JOGO"
+
+[node name="Opcoes" type="Button" parent="Main" unique_id=1574031981]
+layout_mode = 2
+text = "OPÇÕES"
+
+[node name="Sair" type="Button" parent="Main" unique_id=1439610283]
+layout_mode = 2
+text = "SAIR"
+
+[node name="Opcoes" type="VBoxContainer" parent="." unique_id=1272522138]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_right = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="Opcoes" unique_id=1611483849]
+layout_mode = 2
+text = "TELA CHEIA"
+
+[node name="Label" type="Label" parent="Opcoes" unique_id=1815242325]
+layout_mode = 2
+text = "VOLUME"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Opcoes" unique_id=1662869518]
+layout_mode = 2
+
+[node name="Voltar" type="Button" parent="Opcoes" unique_id=993078555]
+layout_mode = 2
+text = "VOLTAR"
+
+[connection signal="pressed" from="Main/Novo Jogo" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Main/Carregar Jogo" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Main/Opcoes" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Main/Sair" to="." method="_on_button_4_pressed"]
+[connection signal="button_up" from="Opcoes/CheckButton" to="." method="_on_check_button_button_up"]
+[connection signal="value_changed" from="Opcoes/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Opcoes/Voltar" to="." method="_on_voltar_pressed"]

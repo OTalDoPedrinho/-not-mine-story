@@ -10,6 +10,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super(delta)
 	
-	if player:
+	if player and global_position.distance_to(player.global_position)<=detect_range:
 		await get_tree().create_timer(1.5).timeout
-		speed = 30
+		speed = 15

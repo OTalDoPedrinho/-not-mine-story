@@ -1,10 +1,13 @@
 extends Entity
 
-#ESTOU DESESPERADO
-
 #region Variáveis
+#region Knockback
+var knockback_dir: float = 0.0
+@export var knockback_force: float = 100
+#endregion
+
 #region Coyote
-var coyote_time: float = 0.15
+var coyote_time: float = .15
 var coyote_timer: float = 0.0
 var was_on_floor: bool = false
 #endregion
@@ -13,26 +16,28 @@ var was_on_floor: bool = false
 @export var j_force = 250
 @export var j_force_min = 100
 @export var dash_spd = 300
-@export var dash_dur = 0.1
-@export var iframes_time = 1.5
+@export var dash_dur = .1
+@export var iframes_time = .5
 @export var projetil_cena: PackedScene = preload("res://cenas/projetil.tscn")
+
+@onready var Animacao: AnimatedSprite2D = $AnimatedSprite2D
 #endregion
 
 #region Booleans
 var iframed = false
 var player_in_range = false
+var is_jumping = false
 #endregion
 
 #region Variables
-var is_jumping = false
 var shoot_timer = 0.0
-var shoot_dur = 0.2
-var iframes_timer = 0
+var shoot_dur = .2
+var iframes_timer = 0.0
 var dash_cooldown = .4
 var dash_timer = dash_cooldown
 var dash_cur_dur = 0.0
 var atk_timer = 0.0
-var atk_dur = 0.15
+var atk_dur = .5
 #endregion
 
 #region States
@@ -42,19 +47,29 @@ var cur_state: state = state.idle
 
 #endregion
 
+func _ready() -> void:
+	if SaveLoad.SaveFileData.checkpoint_pos != Vector2.ZERO:
+		global_position = SaveLoad.SaveFileData.checkpoint_pos
+		hp = SaveLoad.SaveFileData.hp
+		Global.has_dash = SaveLoad.SaveFileData.has_dash
+		Global.has_picaxe = SaveLoad.SaveFileData.has_picaxe
+
 func _physics_process(delta: float) -> void:
-	print(str(hp))
+	if not is_node_ready():
+		return
 	
 	var move_x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	
 	dash_timer += delta
-	
-	#region Coyote
+
+	#region Flip
 	if velocity.x > 0:
-		$Sprite2D.flip_h = false
+		Animacao.flip_h = false
 	elif velocity.x < 0:
-		$Sprite2D.flip_h = true
-	
+		Animacao.flip_h = true
+	#endregion
+
+	#region Coyote
 	if is_on_floor():
 		coyote_timer = coyote_time
 		was_on_floor = true
@@ -62,102 +77,29 @@ func _physics_process(delta: float) -> void:
 		coyote_timer -= delta
 	var can_jump = is_on_floor() or coyote_timer > 0.0
 	#endregion
-	
+
+	#region State Machine
 	match cur_state:
 		state.idle:
-			$Sprite2D.play("Idle")
-			
-			if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
-				cur_state = state.walk
-			if Input.is_action_just_pressed("jump") and can_jump:
-				cur_state = state.jump
-				velocity.y = -j_force
-				coyote_timer = 0.0
-				is_jumping = true
-			if Input.is_action_just_pressed("dash") and Global.has_dash and dash_timer >= dash_cooldown:
-				cur_state = state.dash
-				dash_cur_dur = 0.0
-			if Input.is_action_just_pressed("atk"):
-				cur_state = state.atk
-				atk_timer = 0.0
-			if Input.is_action_just_pressed("shoot"):
-				cur_state = state.shoot
-				shoot_timer = 0.0
+			_idle(move_x, can_jump)
 		state.walk:
-			velocity.x = move_x * speed
-			
-			$Sprite2D.play("Walk")
-			
-			if move_x == 0:
-				cur_state = state.idle
-			
-			if Input.is_action_just_pressed("jump") and can_jump:
-				cur_state = state.jump
-				velocity.y = -j_force
-				coyote_timer = 0.0
-				is_jumping = true
-			if Input.is_action_just_pressed("dash") and Global.has_dash and dash_timer >= dash_cooldown:
-				cur_state = state.dash
-				dash_cur_dur = 0.0
-			if Input.is_action_just_pressed("atk"):
-				cur_state = state.atk
-				atk_timer = 0.0
-			if Input.is_action_just_pressed("shoot"):
-				cur_state = state.shoot
-				shoot_timer = 0
+			_walk(move_x, can_jump)
 		state.jump:
-			$Sprite2D.play("Jump")
-			velocity.x = move_x * speed
-			
-			# soltou o botão antes de atingir o pico → corta o pulo
-			if Input.is_action_just_released("jump") and velocity.y < 0 and is_jumping:
-				velocity.y = max(velocity.y, -j_force_min)
-				is_jumping = false
-				
-			# chegou no pico ou no chão → pulo acabou
-			if velocity.y >= 0:
-				is_jumping = false
-			
-			if is_on_floor():
-				cur_state = state.idle
-			
-			if Input.is_action_just_pressed("shoot"):
-				cur_state = state.shoot
-				shoot_timer = 0
-			if Input.is_action_just_pressed("dash") and Global.has_dash and dash_timer >= dash_cooldown:
-				cur_state = state.dash
-				dash_cur_dur = 0.0
+			_jump(move_x)
 		state.dash:
-			dash_cur_dur += delta
-			velocity.x = move_x * dash_spd if move_x != 0 else sign(scale.x) * dash_spd
-			
-			if dash_cur_dur >= dash_dur:
-				dash_timer = 0
-				cur_state = state.idle
+			_dash(move_x, delta)
 		state.atk:
-			atk_timer += delta
-			velocity.x = 0
-			$AtkHitbox.monitoring = true
-			
-			if atk_timer >= atk_dur:
-				$AtkHitbox.monitoring = false
-				cur_state = state.idle
+			_atk(delta)
 		state.shoot:
 			_shoot(delta)
 		state.take_dmg:
-			iframes_timer+=delta
-			
-			if iframes_timer>=iframes_time:
-				iframes_timer = 0
-				iframed = false
-				velocity.x = move_x*speed
-				cur_state = state.idle
+			_take_dmg(move_x, delta)
 		state.die:
-			velocity.x = 0
-			queue_free()
+			_die()
 		state.talk:
-			velocity.x = 0
-	
+			_talk()
+	#endregion
+
 	#region Colisão
 	for i in get_slide_collision_count():
 		var collider = get_slide_collision(i).get_collider()
@@ -165,60 +107,143 @@ func _physics_process(delta: float) -> void:
 		if not is_instance_valid(collider):
 			continue
 		
-		if collider is Enemy and not iframed and collider.p_colidiu:
+		if iframed:  # ← sai do loop inteiro se já tomou dano
+			break
+		
+		if (collider.is_in_group("enemy") or collider is Enemy) and not iframed:
 			hp -= collider.dmg
-			cur_state = state.take_dmg
-			collider.p_colidiu = false
-			iframed = true
-			
-			print("colidiu com: ", collider.name, " | grupo enemy: ", collider.is_in_group("enemy"), " | iframed: ", iframed, " | p_colidiu: ", collider.get("p_colidiu"))
-			
-		if collider.is_in_group('projetil') and not iframed:
-			hp -= collider.dmg
+			knockback_dir = sign(global_position.x - collider.global_position.x)
 			cur_state = state.take_dmg
 			iframed = true
-			print("dano tomado! hp: ", hp)
+			break
+		
+		if collider.is_in_group("projetil") and not iframed:
+			hp -= collider.dmg
+			knockback_dir = sign(global_position.x - collider.global_position.x)
+			cur_state = state.take_dmg
+			iframed = true
+			break
 	#endregion
 	
 	velocity.y += Global.grvt
-	
 	move_and_slide()
-	
-	if Input.is_action_just_pressed("save"):
-		SaveLoad.SaveFileData.hp = hp
-		SaveLoad.SaveFileData.checkpoint_pos = global_position
-		'SaveLoad.SaveFileData.cur_area = cur_area
-		SaveLoad.SaveFileData.cur_room = cur_room'
-		SaveLoad.SaveFileData.has_dash = Global.has_dash
-		SaveLoad.SaveFileData.has_picaxe = Global.has_picaxe
-		'SaveLoad.SaveFileData.mentiu_batmom = Global.mentiu_batmom
-		SaveLoad.SaveFileData.toadiana_ajudou = Global.toadiana_ajudou
-		SaveLoad.SaveFileData.bosses_derrotados = Global.bosses_derrotados
-		SaveLoad.SaveFileData.npcs_encontrados = Global.npcs_encontrados'
-		SaveLoad._save()
-	if Input.is_action_just_pressed("load"):
-		SaveLoad._load()
-		hp = SaveLoad.SaveFileData.hp
-		'cur_area = SaveLoad.SaveFileData.cur_area
-		cur_room = SaveLoad.SaveFileData.cur_room'
-		global_position = SaveLoad.SaveFileData.checkpoint_pos
-		Global.has_dash = SaveLoad.SaveFileData.has_dash
-		Global.has_picaxe = SaveLoad.SaveFileData.has_picaxe
-		'Global.mentiu_batmom = SaveLoad.SaveFileData.mentiu_batmom
-		Global.toadiana_ajudou = SaveLoad.SaveFileData.toadiana_ajudou
-		Global.bosses_derrotados = SaveLoad.SaveFileData.bosses_derrotados
-		Global.npcs_encontrados = SaveLoad.SaveFileData.npcs_encontrados'
 	
 	if Global.has_picaxe == false:
 		dmg = 1
 	else:
 		dmg = 1.75
 
+#region States
+func _idle(move_x: int, can_jump: bool) -> void:
+	Animacao.play("idle")
+	velocity.x = 0
+
+	if Input.is_action_pressed("right") or Input.is_action_pressed("left"):
+		cur_state = state.walk
+	if Input.is_action_just_pressed("jump") and can_jump:
+		cur_state = state.jump
+		velocity.y = -j_force
+		coyote_timer = 0.0
+		is_jumping = true
+	if Input.is_action_just_pressed("dash") and Global.has_dash and dash_timer >= dash_cooldown:
+		cur_state = state.dash
+		dash_cur_dur = 0.0
+	if Input.is_action_just_pressed("atk"):
+		cur_state = state.atk
+		atk_timer = 0.0
+	if Input.is_action_just_pressed("shoot"):
+		cur_state = state.shoot
+		shoot_timer = 0.0
+
+func _walk(move_x: int, can_jump: bool) -> void:
+	Animacao.play("walk")
+	velocity.x = move_x * speed
+
+	if move_x == 0:
+		cur_state = state.idle
+	if Input.is_action_just_pressed("jump") and can_jump:
+		cur_state = state.jump
+		velocity.y = -j_force
+		coyote_timer = 0.0
+		is_jumping = true
+	if Input.is_action_just_pressed("dash") and Global.has_dash and dash_timer >= dash_cooldown:
+		cur_state = state.dash
+		dash_cur_dur = 0.0
+	if Input.is_action_just_pressed("atk"):
+		cur_state = state.atk
+		atk_timer = 0.0
+	if Input.is_action_just_pressed("shoot"):
+		cur_state = state.shoot
+		shoot_timer = 0.0
+
+func _jump(move_x: int) -> void:
+	Animacao.play("jump")
+	velocity.x = move_x * speed
+
+	if Input.is_action_just_released("jump") and velocity.y < 0 and is_jumping:
+		velocity.y = max(velocity.y, -j_force_min)
+		is_jumping = false
+
+	if velocity.y >= 0:
+		is_jumping = false
+
+	if is_on_floor():
+		cur_state = state.idle
+	if Input.is_action_just_pressed("shoot"):
+		cur_state = state.shoot
+		shoot_timer = 0.0
+	if Input.is_action_just_pressed("dash") and Global.has_dash and dash_timer >= dash_cooldown:
+		cur_state = state.dash
+		dash_cur_dur = 0.0
+
+func _dash(move_x: int, delta: float) -> void:
+	dash_cur_dur += delta
+	velocity.x = move_x * dash_spd if move_x != 0 else sign(scale.x) * dash_spd
+
+	if dash_cur_dur >= dash_dur:
+		dash_timer = 0.0
+		cur_state = state.idle
+
+func _atk(delta: float) -> void:
+	atk_timer += delta
+	velocity.x = 0
+	$AtkHitbox.monitoring = true
+
+	if atk_timer >= atk_dur:
+		$AtkHitbox.monitoring = false
+		cur_state = state.idle
+
+func _take_dmg(move_x: int, delta: float) -> void:
+	velocity.x = knockback_dir * knockback_force
+	iframes_timer += delta
+
+	if iframes_timer >= iframes_time:
+		iframes_timer = 0.0
+		iframed = false
+		knockback_dir = 0.0
+		cur_state = state.idle
+	
+	if hp<=0:
+		cur_state = state.die
+
+func _die() -> void:
+	if hp > 0:
+		cur_state = state.idle
+		return
+	velocity.x = 0
+	queue_free()
+	
+	$"../GameOver".visible = true
+
+func _talk() -> void:
+	velocity.x = 0
+#endregion
+
 func _on_atk_hitbox_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		body.tomar_dano(dmg, global_position)
 
-func _shoot(delta: float):
+func _shoot(delta: float) -> void:
 	if shoot_timer <= 0.0:
 		var mouse_pos = get_global_mouse_position()
 		var shoot_dir = (mouse_pos - global_position).normalized()

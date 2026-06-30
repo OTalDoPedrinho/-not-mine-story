@@ -18,7 +18,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super(delta)
 	
-	dist = global_position.distance_to(player.global_position)
+	if player:
+		dist = global_position.distance_to(player.global_position)
 	
 	match cur_state:
 		state.idle:
