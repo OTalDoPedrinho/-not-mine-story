@@ -16,7 +16,7 @@ func _on_area_2d_body_entered(body: Node) -> void:
 
 func _salvar(player: Node) -> void:
 	SaveLoad.SaveFileData.hp = player.hp_max
-	SaveLoad.SaveFileData.checkpoint_pos = global_position
+	SaveLoad.SaveFileData.checkpoint_pos = player.global_position
 	SaveLoad.SaveFileData.cur_room = checkpoint_id
 	SaveLoad.SaveFileData.has_dash = Global.has_dash
 	SaveLoad.SaveFileData.has_picaxe = Global.has_picaxe
