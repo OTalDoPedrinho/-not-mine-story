@@ -24,6 +24,7 @@ func _on_button_pressed() -> void:
 
 func _on_button_2_pressed() -> void:
 	queue_free()
+	get_tree().paused = false
 	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://cenas/sistemas/main_menu.tscn")
 
