@@ -14,7 +14,13 @@ func _on_button_pressed() -> void:
 
 func _on_button_2_pressed() -> void:
 	SaveLoad._load()
-	get_tree().change_scene_to_file(SaveLoad.SaveFileData.cur_room)
+	
+	# Verifica se o caminho existe
+	if SaveLoad.SaveFileData.cur_room != "" and FileAccess.file_exists(SaveLoad.SaveFileData.cur_room.replace("res://", "")):
+		get_tree().change_scene_to_file(SaveLoad.SaveFileData.cur_room)
+	else:
+		# Se não tiver save válido, volta para a primeira fase
+		get_tree().change_scene_to_file("res://cenas/salas/cena_01.tscn")
 
 func _on_button_3_pressed() -> void:
 	$Main.visible = false
