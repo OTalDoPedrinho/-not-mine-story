@@ -227,13 +227,12 @@ func _take_dmg(move_x: int, delta: float) -> void:
 		cur_state = state.die
 
 func _die() -> void:
-	if hp > 0:
-		cur_state = state.idle
-		return
-	velocity.x = 0
-	queue_free()
-	
-	$"../GameOver".visible = true
+	# Espera 1.75s
+	await get_tree().create_timer(1.75).timeout
+	# Volta para o checkpoint
+	global_position = SaveLoad.SaveFileData.checkpoint_pos
+	hp = SaveLoad.SaveFileData.hp
+	cur_state = state.idle
 
 func _talk() -> void:
 	velocity.x = 0
