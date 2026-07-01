@@ -232,10 +232,21 @@ func _take_dmg(move_x: int, delta: float) -> void:
 		cur_state = state.die
 
 func _die() -> void:
-	# Instancia o Game Over
+	# Instancia o Game Over dinamicamente
 	var game_over = load("res://cenas/sistemas/game_over.tscn").instantiate()
 	get_tree().root.add_child(game_over)
-	game_over.mostrar_game_over()  # mostra e pausa
+	game_over.mostrar_game_over()
+	
+	# Aguarda 1.75s e respawna (opcional, se quiser que o player reswane automaticamente)
+	await get_tree().create_timer(1.75).timeout
+	global_position = SaveLoad.SaveFileData.checkpoint_pos
+	hp = SaveLoad.SaveFileData.hp
+	cur_state = state.idle
+	
+	# Remove o Game Over (se ainda estiver lá)
+	if is_instance_valid(game_over):
+		game_over.queue_free()
+		get_tree().paused = false
 
 func _talk() -> void:
 	velocity.x = 0
