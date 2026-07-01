@@ -230,12 +230,13 @@ func _take_dmg(move_x: int, delta: float) -> void:
 		cur_state = state.die
 
 func _die() -> void:
+	#visible = false
+	$Camera2D.enabled = false
+	
 	# Espera 1.75s
 	await get_tree().create_timer(1.75).timeout
+	
 	# Volta para o checkpoint
-	global_position = SaveLoad.SaveFileData.checkpoint_pos
-	hp = SaveLoad.SaveFileData.hp
-	cur_state = state.idle
 
 func _talk() -> void:
 	velocity.x = 0

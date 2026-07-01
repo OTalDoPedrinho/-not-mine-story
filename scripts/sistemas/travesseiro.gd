@@ -8,7 +8,6 @@ var player_ref: Node = null
 func _ready() -> void:
 	if SaveLoad.SaveFileData.ultimo_checkpoint == checkpoint_id:
 		ativado = true
-		$Sprite2D.play("ativo")
 
 func _process(delta: float) -> void:
 	if player_in_range and not ativado and Input.is_action_just_pressed("act"):
