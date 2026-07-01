@@ -219,17 +219,15 @@ func _take_dmg(move_x: int, delta: float) -> void:
 	velocity.x = knockback_dir * knockback_force
 	iframes_timer += delta
 	
-	if hp<=0:
+	if hp <= 0:
 		cur_state = state.die
-
+		return
+	
 	if iframes_timer >= iframes_time:
 		iframes_timer = 0.0
 		iframed = false
 		knockback_dir = 0.0
 		cur_state = state.idle
-	
-	if hp<=0:
-		cur_state = state.die
 
 func _die() -> void:
 	# Instancia o Game Over dinamicamente
