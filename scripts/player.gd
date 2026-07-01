@@ -237,16 +237,8 @@ func _die() -> void:
 	get_tree().root.add_child(game_over)
 	game_over.mostrar_game_over()
 	
-	# Aguarda 1.75s e respawna (opcional, se quiser que o player reswane automaticamente)
-	await get_tree().create_timer(1.75).timeout
-	global_position = SaveLoad.SaveFileData.checkpoint_pos
-	hp = SaveLoad.SaveFileData.hp
-	cur_state = state.idle
-	
-	# Remove o Game Over (se ainda estiver lá)
-	if is_instance_valid(game_over):
-		game_over.queue_free()
-		get_tree().paused = false
+	# O jogador agora clica em "Tentar Novamente" ou "Sair"
+	# O respawn é controlado pelo game_over.gd
 
 func _talk() -> void:
 	velocity.x = 0
