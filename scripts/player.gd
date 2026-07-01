@@ -30,6 +30,8 @@ var is_jumping = false
 #endregion
 
 #region Variables
+var pause_menu_instance = null
+var game_over_instance = null
 var shoot_timer = 0.0
 var shoot_dur = .2
 var iframes_timer = 0.0
@@ -230,17 +232,27 @@ func _take_dmg(move_x: int, delta: float) -> void:
 		cur_state = state.die
 
 func _die() -> void:
-	#visible = false
-	$Camera2D.enabled = false
-	
-	# Espera 1.75s
-	await get_tree().create_timer(1.75).timeout
-	
-	# Volta para o checkpoint
+	# Instancia o Game Over
+	var game_over = load("res://cenas/sistemas/game_over.tscn").instantiate()
+	get_tree().root.add_child(game_over)
+	game_over.mostrar_game_over()  # mostra e pausa
 
 func _talk() -> void:
 	velocity.x = 0
 #endregion
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		if pause_menu_instance == null or not is_instance_valid(pause_menu_instance):
+			# Instancia o Pause Menu
+			pause_menu_instance = load("res://cenas/sistemas/pause_menu.tscn").instantiate()
+			get_tree().root.add_child(pause_menu_instance)
+			pause_menu_instance.mostrar_pause()  # função que mostra o menu e pausa
+		else:
+			# Se já existe, fecha
+			pause_menu_instance.fechar_pause()
+			pause_menu_instance.queue_free()
+			pause_menu_instance = null
 
 func _on_atk_hitbox_body_entered(body: Node2D) -> void:
 	if body is Enemy:
