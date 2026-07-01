@@ -1,22 +1,28 @@
 extends CanvasLayer
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 	get_tree().paused = false
-	
-	process_mode = Node.PROCESS_MODE_ALWAYS
 
-func _process(delta: float) -> void:
-	if $"../Player".hp<=0:
-		get_tree().paused = true
-		visible = true
+func mostrar_game_over() -> void:
+	visible = true
+	get_tree().paused = true
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_file(SaveLoad.SaveFileData.cur_room)
+	# Tentar Novamente
+	get_tree().paused = false
+	queue_free()
 	
-	$"../Player".global_position = SaveLoad.SaveFileData.checkpoint_pos
-	$"../Player".hp = SaveLoad.SaveFileData.hp
-	$"../Player".cur_state = $"../Player".state.idle
+	# Aguarda um frame para garantir que foi removido
+	await get_tree().process_frame
+	get_tree().change_scene_to_file(SaveLoad.SaveFileData.cur_room)
 
 func _on_button_2_pressed() -> void:
+	# Voltar ao Main Menu
+	get_tree().paused = false
+	queue_free()
+	
+	# Aguarda um frame para garantir que foi removido
+	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://cenas/sistemas/main_menu.tscn")
