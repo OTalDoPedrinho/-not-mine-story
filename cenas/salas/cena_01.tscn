@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://bcjl514n4i5kv"]
 
-[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="1_sj74s"]
+[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://arte/icon.svg" id="1_sj74s"]
 [ext_resource type="PackedScene" uid="uid://dxbthm5ini32n" path="res://cenas/player.tscn" id="2_17ufr"]
 [ext_resource type="PackedScene" uid="uid://brwu1827ifvvd" path="res://cenas/bosses/simon_boss.tscn" id="3_vwx7q"]
-[ext_resource type="Texture2D" uid="uid://cg8iegrbs5038" path="res://sprites/Tiles/minefloortile01.png" id="4_3oxax"]
+[ext_resource type="Texture2D" uid="uid://cg8iegrbs5038" path="res://arte/sprites/Tiles/minefloortile01.png" id="4_3oxax"]
 [ext_resource type="PackedScene" uid="uid://dhik6re0q7xm6" path="res://cenas/sistemas/pause_menu.tscn" id="5_ho3bb"]
 [ext_resource type="PackedScene" uid="uid://32glyu1r7l5f" path="res://cenas/sistemas/travesseiro.tscn" id="6_17ufr"]
 [ext_resource type="PackedScene" uid="uid://dy04mxex2imau" path="res://cenas/sistemas/game_over.tscn" id="7_vwx7q"]
@@ -64,6 +64,7 @@ shape = SubResource("RectangleShape2D_ce8lm")
 
 [node name="Player" parent="." unique_id=1428523968 instance=ExtResource("2_17ufr")]
 position = Vector2(77, 154)
+hp_max = 1000
 
 [node name="Simon Boss" parent="." unique_id=1291563727 instance=ExtResource("3_vwx7q")]
 position = Vector2(309, 62)

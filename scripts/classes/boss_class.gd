@@ -1,7 +1,7 @@
 class_name Boss
 extends Entity
 
-@export var fases = 2
+@export var fases: int
 @export var cur_fase = 1
 
 var p_colidiu = false
@@ -15,9 +15,3 @@ func _physics_process(delta: float) -> void:
 		var collider = get_slide_collision(i).get_collider()
 		if collider and collider.name == "Player":
 			p_colidiu = true
-
-func tomar_dano():
-	hp -= 1
-	if hp <= 0:
-		#adicionar animação de morte
-		queue_free()

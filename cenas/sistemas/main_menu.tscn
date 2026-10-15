@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dkg7d6us0ykjj"]
 
-[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="1_q0sk5"]
+[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://arte/icon.svg" id="1_q0sk5"]
 [ext_resource type="Script" uid="uid://iaynrc52lxt6" path="res://scripts/sistemas/main_menu.gd" id="1_wi4eu"]
 
 [node name="Main Menu" type="CanvasLayer" unique_id=1771545351]

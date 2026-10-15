@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://50ww6cbq3h8r"]
 
-[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="1_s181s"]
+[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://arte/icon.svg" id="1_s181s"]
 [ext_resource type="PackedScene" uid="uid://dxbthm5ini32n" path="res://cenas/player.tscn" id="2_xhenp"]
-[ext_resource type="Texture2D" uid="uid://cg8iegrbs5038" path="res://sprites/Tiles/minefloortile01.png" id="3_gt7nt"]
+[ext_resource type="Texture2D" uid="uid://cg8iegrbs5038" path="res://arte/sprites/Tiles/minefloortile01.png" id="3_gt7nt"]
 [ext_resource type="PackedScene" uid="uid://cg76qeu011cgv" path="res://cenas/npcs/bat_mom.tscn" id="4_hgu5v"]
 [ext_resource type="PackedScene" uid="uid://dhik6re0q7xm6" path="res://cenas/sistemas/pause_menu.tscn" id="5_n4dl0"]
 [ext_resource type="Script" uid="uid://ca7ux5if7ndjj" path="res://scripts/classes/enemy/stone_enemy_class.gd" id="6_fl1kq"]

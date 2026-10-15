@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cg76qeu011cgv"]
 
 [ext_resource type="Script" uid="uid://bn74mv6qyrn4t" path="res://scripts/classes/npc_class.gd" id="1_qabw6"]
-[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://icon.svg" id="2_2sctj"]
+[ext_resource type="Texture2D" uid="uid://c6ie2v10trmjk" path="res://arte/icon.svg" id="2_2sctj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hurt8"]
 radius = 27.018513

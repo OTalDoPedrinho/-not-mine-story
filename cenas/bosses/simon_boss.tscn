@@ -1,13 +1,38 @@
 [gd_scene format=3 uid="uid://brwu1827ifvvd"]
 
 [ext_resource type="Script" uid="uid://c2apdba7712ld" path="res://scripts/bosses/simon_boss.gd" id="1_tkgyj"]
-[ext_resource type="Texture2D" uid="uid://bbths5m2qbbdo" path="res://sprites/Enemies/SimonBossIdle1.png" id="2_jsely"]
-[ext_resource type="Texture2D" uid="uid://cydpgwirt4gbg" path="res://sprites/Enemies/SimonBossIdle2.png" id="3_t36xq"]
-[ext_resource type="Texture2D" uid="uid://cbpv5gw6ksytm" path="res://sprites/Enemies/SimonBossIdle3.png" id="4_dr725"]
-[ext_resource type="Texture2D" uid="uid://dr0hcvad7oquu" path="res://sprites/Enemies/SimonBossIdle4.png" id="5_e4t2k"]
+[ext_resource type="Texture2D" uid="uid://bbths5m2qbbdo" path="res://arte/sprites/Enemies/SimonBossIdle1.png" id="2_jsely"]
+[ext_resource type="Texture2D" uid="uid://cydpgwirt4gbg" path="res://arte/sprites/Enemies/SimonBossIdle2.png" id="3_t36xq"]
+[ext_resource type="Texture2D" uid="uid://cbpv5gw6ksytm" path="res://arte/sprites/Enemies/SimonBossIdle3.png" id="4_dr725"]
+[ext_resource type="Texture2D" uid="uid://dr0hcvad7oquu" path="res://arte/sprites/Enemies/SimonBossIdle4.png" id="5_e4t2k"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
 animations = [{
+"frames": [],
+"loop": 1,
+"name": &"atk01",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"atk01_prep",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"atk02",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"atk02_prep",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"die",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_jsely")
@@ -24,24 +49,36 @@ animations = [{
 "loop": 1,
 "name": &"idle",
 "speed": 6.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"intro",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(32, 43)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(23, 33)
+
 [node name="Simon Boss" type="CharacterBody2D" unique_id=1291563727 groups=["enemy"]]
 script = ExtResource("1_tkgyj")
 hp_max = 90
-speed = 100
 dmg = 2.5
 mass = 2.0
 metadata/_custom_type_script = "uid://dr65twcone7t5"
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=474880462]
 sprite_frames = SubResource("SpriteFrames_g4v7s")
-animation = &"idle"
-frame_progress = 0.28693622
+animation = &"atk02"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=673656516]
 position = Vector2(1, 10.5)
 shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="MeeleeArea" type="Area2D" parent="." unique_id=571549395]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeeleeArea" unique_id=1676626167]
+position = Vector2(30, 10)
+shape = SubResource("RectangleShape2D_yf5fn")
